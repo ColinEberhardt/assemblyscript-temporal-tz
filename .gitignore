@@ -1,0 +1,5 @@
+node_modules/
+build/
+assembly/**/__tests__/*.map
+assembly/**/__tests__/*.wat
+!assembly/**/__tests__/empty.wat
