@@ -8,6 +8,8 @@ export enum AtTimeZone {
   UTC
 }
 
+// rules define the point at which daylight savings transitions occur, for a given
+// range of years
 export class Rule {
   constructor(
     public name: string,

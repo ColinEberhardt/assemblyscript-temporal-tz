@@ -31,10 +31,10 @@ const parseDay = (day) => {
 };
 
 const parseTimeZone = (zone) => {
-  if (zone == "" || zone == "w"|| zone == "s") {
+  if (zone == "" || zone == "w") {
     return "local";
   }
-  if (zone == "g" || zone == "u" || zone == "z") {
+  if (zone == "g" || zone == "u" || zone == "z" || zone == "s") {
     return "utc";
   }
   return "undefined";

@@ -6,14 +6,14 @@
   "ascMain": "assembly/index.ts",
   "types": "assembly/index.ts",
   "scripts": {
-    "pretest": "npm run asbuild:empty",
-    "test": "npm run test:empty && asp --verbose --nologo ",
-    "test:empty": "diff build/empty.wat assembly/__tests__/empty.wat",
-    "test:ci": "asp --summary && npm run test:empty",
+    "test": "npm run generate-tz && asp --verbose --nologo ",
+    "test:ci": "npm run generate-tz && asp --summary && npm run test:empty",
     "asbuild:untouched": "asc assembly/index.ts --target debug",
     "asbuild:optimized": "asc assembly/index.ts --target release",
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized",
-    "asbuild:empty": "asc --config asconfig.empty.json"
+    "asbuild:empty": "asc --config asconfig.empty.json",
+    "generate-tz": "node tzdb/index.mjs",
+    "tsrun": "ts-node ts/index.ts"
   },
   "author": "colin.eberhardt@gmail.com",
   "license": "MIT",
