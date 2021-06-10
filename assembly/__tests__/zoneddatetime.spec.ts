@@ -1,3 +1,4 @@
+import { PlainDateTime } from "assemblyscript-temporal";
 import { ZonedDateTime, TimeZone } from "..";
 
 const tz = new TimeZone("America/Los_Angeles");
@@ -10,13 +11,23 @@ let zdt: ZonedDateTime;
 describe("handles timezones (a mixed bag of tests that verify some of the gnarly issues in TZ support)", () => {
   it("handles end of daylight saving transition", () => {
     // half an hour before daylight saving ends
-    zdt = new ZonedDateTime(1636277400000000000, new TimeZone("America/Los_Angeles"));
-    expect(zdt.toString()).toBe("2021-11-07T01:30:00-08:00[America/Los_Angeles]");
+    zdt = new ZonedDateTime(
+      1636277400000000000,
+      new TimeZone("America/Los_Angeles")
+    );
+    expect(zdt.toString()).toBe(
+      "2021-11-07T01:30:00-08:00[America/Los_Angeles]"
+    );
     // half an hour afterwards - the clock shows the same wall-time, but a different offset
-    zdt = new ZonedDateTime(1636273800000000000, new TimeZone("America/Los_Angeles"));
-    expect(zdt.toString()).toBe("2021-11-07T01:30:00-07:00[America/Los_Angeles]");
-  })
-})
+    zdt = new ZonedDateTime(
+      1636273800000000000,
+      new TimeZone("America/Los_Angeles")
+    );
+    expect(zdt.toString()).toBe(
+      "2021-11-07T01:30:00-07:00[America/Los_Angeles]"
+    );
+  });
+});
 
 describe("Construction and properties", () => {
   it("works", () => {
@@ -128,139 +139,141 @@ describe("Construction and properties", () => {
   //     expect(zdt.calendar.id).toBe("japanese");
   //   });
 
-  it('parses with an IANA zone but no offset', () => {
-    const zdt = ZonedDateTime.from('2020-03-08T01:00[America/Los_Angeles]');
-    expect(zdt.toString()).toBe('2020-03-08T01:00:00-08:00[America/Los_Angeles]');
+  it("parses with an IANA zone but no offset", () => {
+    const zdt = ZonedDateTime.from("2020-03-08T01:00[America/Los_Angeles]");
+    expect(zdt.toString()).toBe(
+      "2020-03-08T01:00:00-08:00[America/Los_Angeles]"
+    );
   });
-  it('parses with an IANA zone but no offset', () => {
-    const zdt = ZonedDateTime.from('2020-03-08T01:00[America/Los_Angeles]');
-    expect(zdt.toString()).toBe('2020-03-08T01:00:00-08:00[America/Los_Angeles]');
+  it("parses with an IANA zone but no offset", () => {
+    const zdt = ZonedDateTime.from("2020-03-08T01:00[America/Los_Angeles]");
+    expect(zdt.toString()).toBe(
+      "2020-03-08T01:00:00-08:00[America/Los_Angeles]"
+    );
   });
-  it('throws if no brackets', () => {
+  it("throws if no brackets", () => {
     expect(() => {
-      ZonedDateTime.from('2020-03-08T01:00-08:00');
+      ZonedDateTime.from("2020-03-08T01:00-08:00");
     }).toThrow();
     expect(() => {
-      ZonedDateTime.from('2020-03-08T01:00Z');
+      ZonedDateTime.from("2020-03-08T01:00Z");
     }).toThrow();
   });
   //      it('parses with an IANA zone but no offset (with disambiguation)', () => {
-//        const zdt = ZonedDateTime.from('2020-03-08T02:30[America/Los_Angeles]', { disambiguation: 'earlier' });
-//        expect(zdt.toString()).toBe('2020-03-08T01:30:00-08:00[America/Los_Angeles]');
-//      });
-//      it('parses with an offset in brackets', () => {
-//        const zdt = ZonedDateTime.from('2020-03-08T01:00-08:00[-08:00]');
-//        expect(zdt.toString()).toBe('2020-03-08T01:00:00-08:00[-08:00]');
-//      });
-//      it('throws if no brackets', () => {
-//        throws(() => ZonedDateTime.from('2020-03-08T01:00-08:00'), RangeError);
-//        throws(() => ZonedDateTime.from('2020-03-08T01:00Z'), RangeError);
-//      });
-//      it('"Z" is a time zone designation, not an offset', () => {
-//        throws(() => ZonedDateTime.from('2020-03-08T09:00:00Z[America/Los_Angeles]'), RangeError);
-//      });
-//      it('ZonedDateTime.from(ISO string leap second) is constrained', () => {
-//        equal(
-//          `${ZonedDateTime.from('2016-12-31T23:59:60-08:00[America/Vancouver]')}`,
-//          '2016-12-31T23:59:59-08:00[America/Vancouver]'
-//        );
-//      });
-//      it('variant time separators', () => {
-//        ['1976-11-18t15:23-08:00[America/Los_Angeles]', '1976-11-18 15:23-08:00[America/Los_Angeles]'].forEach((input) =>
-//          expect(`${ZonedDateTime.from(input)}`).toBe('1976-11-18T15:23:00-08:00[America/Los_Angeles]')
-//        );
-//      });
-//      it('any number of decimal places', () => {
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.1-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.1-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.12-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.12-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.123-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.123-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.1234-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.1234-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.12345-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.12345-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.123456-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.123456-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.1234567-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.1234567-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.12345678-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.12345678-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.123456789-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.123456789-08:00[America/Los_Angeles]'
-//        );
-//      });
-//      it('variant decimal separator', () => {
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30,12-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.12-08:00[America/Los_Angeles]'
-//        );
-//      });
-//      it('variant minus sign', () => {
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30.12\u221208:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30.12-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('\u2212009999-11-18T15:23:30.12+00:00[UTC]')}`,
-//          '-009999-11-18T15:23:30.12+00:00[UTC]'
-//        );
-//      });
-//      it('mixture of basic and extended format', () => {
-//        [
-//          '1976-11-18T152330.1-08:00[America/Los_Angeles]',
-//          '19761118T15:23:30.1-08:00[America/Los_Angeles]',
-//          '1976-11-18T15:23:30.1-0800[America/Los_Angeles]',
-//          '1976-11-18T152330.1-0800[America/Los_Angeles]',
-//          '19761118T15:23:30.1-0800[America/Los_Angeles]',
-//          '19761118T152330.1-08:00[America/Los_Angeles]',
-//          '19761118T152330.1-0800[America/Los_Angeles]',
-//          '+001976-11-18T152330.1-08:00[America/Los_Angeles]',
-//          '+0019761118T15:23:30.1-08:00[America/Los_Angeles]',
-//          '+001976-11-18T15:23:30.1-0800[America/Los_Angeles]',
-//          '+001976-11-18T152330.1-0800[America/Los_Angeles]',
-//          '+0019761118T15:23:30.1-0800[America/Los_Angeles]',
-//          '+0019761118T152330.1-08:00[America/Los_Angeles]',
-//          '+0019761118T152330.1-0800[America/Los_Angeles]'
-//        ].forEach((input) => expect(`${ZonedDateTime.from(input)}`).toBe('1976-11-18T15:23:30.1-08:00[America/Los_Angeles]'));
-//      });
-//      it('optional parts', () => {
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15:23:30-08[America/Los_Angeles]')}`,
-//          '1976-11-18T15:23:30-08:00[America/Los_Angeles]'
-//        );
-//        equal(
-//          `${ZonedDateTime.from('1976-11-18T15-08:00[America/Los_Angeles]')}`,
-//          '1976-11-18T15:00:00-08:00[America/Los_Angeles]'
-//        );
-//        expect(`${ZonedDateTime.from('2020-01-01[Asia/Tokyo]')}`).toBe('2020-01-01T00:00:00+09:00[Asia/Tokyo]');
-//      });
-//      it('no junk at end of string', () =>
-//        throws(() => ZonedDateTime.from('1976-11-18T15:23:30.123456789-08:00[America/Los_Angeles]junk'), RangeError));
-//      it('constrain has no effect on invalid ISO string', () => {
-//        throws(() => ZonedDateTime.from('2020-13-34T24:60[America/Los_Angeles]', { overflow: 'constrain' }), RangeError);
-//      });
+  //        const zdt = ZonedDateTime.from('2020-03-08T02:30[America/Los_Angeles]', { disambiguation: 'earlier' });
+  //        expect(zdt.toString()).toBe('2020-03-08T01:30:00-08:00[America/Los_Angeles]');
+  //      });
+  //      it('parses with an offset in brackets', () => {
+  //        const zdt = ZonedDateTime.from('2020-03-08T01:00-08:00[-08:00]');
+  //        expect(zdt.toString()).toBe('2020-03-08T01:00:00-08:00[-08:00]');
+  //      });
+  //      it('throws if no brackets', () => {
+  //        throws(() => ZonedDateTime.from('2020-03-08T01:00-08:00'), RangeError);
+  //        throws(() => ZonedDateTime.from('2020-03-08T01:00Z'), RangeError);
+  //      });
+  //      it('"Z" is a time zone designation, not an offset', () => {
+  //        throws(() => ZonedDateTime.from('2020-03-08T09:00:00Z[America/Los_Angeles]'), RangeError);
+  //      });
+  //      it('ZonedDateTime.from(ISO string leap second) is constrained', () => {
+  //        equal(
+  //          `${ZonedDateTime.from('2016-12-31T23:59:60-08:00[America/Vancouver]')}`,
+  //          '2016-12-31T23:59:59-08:00[America/Vancouver]'
+  //        );
+  //      });
+  //      it('variant time separators', () => {
+  //        ['1976-11-18t15:23-08:00[America/Los_Angeles]', '1976-11-18 15:23-08:00[America/Los_Angeles]'].forEach((input) =>
+  //          expect(`${ZonedDateTime.from(input)}`).toBe('1976-11-18T15:23:00-08:00[America/Los_Angeles]')
+  //        );
+  //      });
+  //      it('any number of decimal places', () => {
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.1-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.1-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.12-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.12-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.123-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.123-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.1234-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.1234-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.12345-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.12345-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.123456-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.123456-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.1234567-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.1234567-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.12345678-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.12345678-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.123456789-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.123456789-08:00[America/Los_Angeles]'
+  //        );
+  //      });
+  //      it('variant decimal separator', () => {
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30,12-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.12-08:00[America/Los_Angeles]'
+  //        );
+  //      });
+  //      it('variant minus sign', () => {
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30.12\u221208:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30.12-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('\u2212009999-11-18T15:23:30.12+00:00[UTC]')}`,
+  //          '-009999-11-18T15:23:30.12+00:00[UTC]'
+  //        );
+  //      });
+  //      it('mixture of basic and extended format', () => {
+  //        [
+  //          '1976-11-18T152330.1-08:00[America/Los_Angeles]',
+  //          '19761118T15:23:30.1-08:00[America/Los_Angeles]',
+  //          '1976-11-18T15:23:30.1-0800[America/Los_Angeles]',
+  //          '1976-11-18T152330.1-0800[America/Los_Angeles]',
+  //          '19761118T15:23:30.1-0800[America/Los_Angeles]',
+  //          '19761118T152330.1-08:00[America/Los_Angeles]',
+  //          '19761118T152330.1-0800[America/Los_Angeles]',
+  //          '+001976-11-18T152330.1-08:00[America/Los_Angeles]',
+  //          '+0019761118T15:23:30.1-08:00[America/Los_Angeles]',
+  //          '+001976-11-18T15:23:30.1-0800[America/Los_Angeles]',
+  //          '+001976-11-18T152330.1-0800[America/Los_Angeles]',
+  //          '+0019761118T15:23:30.1-0800[America/Los_Angeles]',
+  //          '+0019761118T152330.1-08:00[America/Los_Angeles]',
+  //          '+0019761118T152330.1-0800[America/Los_Angeles]'
+  //        ].forEach((input) => expect(`${ZonedDateTime.from(input)}`).toBe('1976-11-18T15:23:30.1-08:00[America/Los_Angeles]'));
+  //      });
+  //      it('optional parts', () => {
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15:23:30-08[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:23:30-08:00[America/Los_Angeles]'
+  //        );
+  //        equal(
+  //          `${ZonedDateTime.from('1976-11-18T15-08:00[America/Los_Angeles]')}`,
+  //          '1976-11-18T15:00:00-08:00[America/Los_Angeles]'
+  //        );
+  //        expect(`${ZonedDateTime.from('2020-01-01[Asia/Tokyo]')}`).toBe('2020-01-01T00:00:00+09:00[Asia/Tokyo]');
+  //      });
+  //      it('no junk at end of string', () =>
+  //        throws(() => ZonedDateTime.from('1976-11-18T15:23:30.123456789-08:00[America/Los_Angeles]junk'), RangeError));
+  //      it('constrain has no effect on invalid ISO string', () => {
+  //        throws(() => ZonedDateTime.from('2020-13-34T24:60[America/Los_Angeles]', { overflow: 'constrain' }), RangeError);
+  //      });
 });
-
-
 
 //      describe('Offset option', () => {
 //        it("{ offset: 'reject' } throws if offset does not match offset time zone", () => {
@@ -580,44 +593,79 @@ describe("Construction and properties", () => {
 //      });
 //    });
 
-//    describe('ZonedDateTime.with()', () => {
-//      const zdt = new Temporal.PlainDateTime(1976, 11, 18, 15, 23, 30, 123, 456, 789).toZonedDateTime('UTC');
-//      it('zdt.with({ year: 2019 } works', () => {
-//        expect(`${zdt.with({ year: 2019 })}`).toBe('2019-11-18T15:23:30.123456789+00:00[UTC]');
-//      });
-//      it('zdt.with({ month: 5 } works', () => {
-//        expect(`${zdt.with({ month: 5 })}`).toBe('1976-05-18T15:23:30.123456789+00:00[UTC]');
-//      });
-//      it('zdt.with({ monthCode: "M05" }) works', () => {
-//        expect(`${zdt.with({ monthCode: 'M05' })}`).toBe('1976-05-18T15:23:30.123456789+00:00[UTC]');
-//      });
-//      it('month and monthCode must agree', () => {
-//        throws(() => zdt.with({ month: 5, monthCode: 'M06' }), RangeError);
-//      });
-//      it('zdt.with({ day: 5 } works', () => {
-//        expect(`${zdt.with({ day: 5 })}`).toBe('1976-11-05T15:23:30.123456789+00:00[UTC]');
-//      });
-//      it('zdt.with({ hour: 5 } works', () => {
-//        expect(`${zdt.with({ hour: 5 })}`).toBe('1976-11-18T05:23:30.123456789+00:00[UTC]');
-//      });
-//      it('zdt.with({ minute: 5 } works', () => {
-//        expect(`${zdt.with({ minute: 5 })}`).toBe('1976-11-18T15:05:30.123456789+00:00[UTC]');
-//      });
-//      it('zdt.with({ second: 5 } works', () => {
-//        expect(`${zdt.with({ second: 5 })}`).toBe('1976-11-18T15:23:05.123456789+00:00[UTC]');
-//      });
-//      it('zdt.with({ millisecond: 5 } works', () => {
-//        expect(`${zdt.with({ millisecond: 5 })}`).toBe('1976-11-18T15:23:30.005456789+00:00[UTC]');
-//      });
-//      it('zdt.with({ microsecond: 5 } works', () => {
-//        expect(`${zdt.with({ microsecond: 5 })}`).toBe('1976-11-18T15:23:30.123005789+00:00[UTC]');
-//      });
-//      it('zdt.with({ nanosecond: 5 } works', () => {
-//        expect(`${zdt.with({ nanosecond: 5 })}`).toBe('1976-11-18T15:23:30.123456005+00:00[UTC]');
-//      });
-//      it('zdt.with({ month: 5, second: 15 } works', () => {
-//        expect(`${zdt.with({ month: 5, second: 15 })}`).toBe('1976-05-18T15:23:15.123456789+00:00[UTC]');
-//      });
+describe("ZonedDateTime.with()", () => {
+  const zdt = ZonedDateTime.toZonedDateTime(
+    new PlainDateTime(1976, 11, 18, 15, 23, 30, 123, 456, 789),
+    "UTC"
+  );
+  it("zdt.with({ year: 2019 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ year: 2019 })}`).toBe(
+      "2019-11-18T15:23:30.123456789+00:00[UTC]"
+    );
+  });
+  it("zdt.with({ month: 5 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ month: 5 })}`).toBe(
+      "1976-05-18T15:23:30.123456789+00:00[UTC]"
+    );
+  });
+  //      it('zdt.with({ monthCode: "M05" }) works', () => {
+  //        expect(`${zdt.with({ monthCode: 'M05' })}`).toBe('1976-05-18T15:23:30.123456789+00:00[UTC]');
+  //      });
+  //      it('month and monthCode must agree', () => {
+  //        throws(() => zdt.with({ month: 5, monthCode: 'M06' }), RangeError);
+  //      });
+  it("zdt.with({ day: 5 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ day: 5 })}`).toBe(
+      "1976-11-05T15:23:30.123456789+00:00[UTC]"
+    );
+  });
+  it("zdt.with({ hour: 5 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ hour: 5 })}`).toBe(
+      "1976-11-18T05:23:30.123456789+00:00[UTC]"
+    );
+  });
+  it("zdt.with({ minute: 5 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ minute: 5 })}`).toBe(
+      "1976-11-18T15:05:30.123456789+00:00[UTC]"
+    );
+  });
+  it("zdt.with({ second: 5 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ second: 5 })}`).toBe(
+      "1976-11-18T15:23:05.123456789+00:00[UTC]"
+    );
+  });
+  it("zdt.with({ millisecond: 5 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ millisecond: 5 })}`).toBe(
+      "1976-11-18T15:23:30.005456789+00:00[UTC]"
+    );
+  });
+  it("zdt.with({ microsecond: 5 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ microsecond: 5 })}`).toBe(
+      "1976-11-18T15:23:30.123005789+00:00[UTC]"
+    );
+  });
+  it("zdt.with({ nanosecond: 5 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ nanosecond: 5 })}`).toBe(
+      "1976-11-18T15:23:30.123456005+00:00[UTC]"
+    );
+  });
+  it("zdt.with({ month: 5, second: 15 } works", () => {
+    // @ts-ignore
+    expect(`${zdt.with({ month: 5, second: 15 })}`).toBe(
+      "1976-05-18T15:23:15.123456789+00:00[UTC]"
+    );
+  });
+});
+
 //      describe('Overflow', () => {
 //        it('constrain', () => {
 //          const overflow = 'constrain';
@@ -1024,7 +1072,6 @@ describe("Construction and properties", () => {
 //        expect(`${zdt.add({ hour: 1, minutes: 1 })}`).toBe('1969-12-25T12:24:45.678901234+00:00[UTC]');
 //      });
 //    });
-
 
 //    describe('ZonedDateTime.subtract()', () => {
 //      const zdt = ZonedDateTime.from('1969-12-25T12:23:45.678901234+00:00[UTC]');

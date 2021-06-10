@@ -14,6 +14,15 @@ export class ZonedDateTime {
     }
   }
 
+  static toZonedDateTime(pdt: PlainDateTime, timezoneString: string): ZonedDateTime {
+    const timezone = new TimeZone(timezoneString);
+    const epochNanos = pdt.epochNanoseconds;
+    return new ZonedDateTime(
+      epochNanos - timezone.getOffsetNanosecondsFor(new Instant(epochNanos)),
+      timezone
+    );
+  }
+
   private static fromString(date: string): ZonedDateTime {
     // parse the date / time components
     const parsed = PlainDateTime.from(date);
@@ -47,9 +56,11 @@ export class ZonedDateTime {
   }
 
   private plainDateTime: PlainDateTime;
+  public timezone: TimeZone;
 
   constructor(public epochNanos: i64, public tz: TimeZone) {
     this.plainDateTime = tz.getPlainDateTimeFor(new Instant(epochNanos));
+    this.timezone = tz;
   }
 
   toInstant(): Instant {
@@ -166,4 +177,15 @@ export class ZonedDateTime {
       this.toPlainDateTime().toString() + this.offset + "[" + this.tz.id + "]"
     );
   }
+
+  with(dateTimeLike: DateTimeLike): ZonedDateTime {
+    const newOne = this.plainDateTime.with(dateTimeLike);
+    const epochNanos = newOne.epochNanoseconds
+    return new ZonedDateTime(
+      epochNanos - this.tz.getOffsetNanosecondsFor(new Instant(epochNanos)),
+      this.timezone
+    );
+  }
+
+
 }
