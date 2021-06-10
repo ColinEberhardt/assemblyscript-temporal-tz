@@ -47,13 +47,13 @@ This is very much a work-in-progress!
  - [x] offset
 
 Methods
- - [ ] with
+ - [x] with
  - [ ] withPlainTime
  - [ ] withPlainDate
  - [ ] withTimeZone
  - [ ] withCalendar
- - [ ] add
- - [ ] subtract
+ - [x] add
+ - [x] subtract
  - [ ] until
  - [ ] since
  - [ ] round

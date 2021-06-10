@@ -1,5 +1,11 @@
-import { PlainDateTime } from "assemblyscript-temporal";
+import {
+  Duration,
+  DurationLike,
+  Overflow,
+  PlainDateTime,
+} from "assemblyscript-temporal";
 import { ZonedDateTime, TimeZone } from "..";
+import { Zone } from "../tz/zone";
 
 const tz = new TimeZone("America/Los_Angeles");
 
@@ -1013,116 +1019,102 @@ describe("ZonedDateTime.with()", () => {
 //      });
 //    });
 
-//    describe('ZonedDateTime.add()', () => {
-//      const zdt = ZonedDateTime.from('1969-12-25T12:23:45.678901234+00:00[UTC]');
-//      describe('cross epoch in ms', () => {
-//        const one = zdt.subtract({ hours: 240, nanoseconds: 800 });
-//        const two = zdt.add({ hours: 240, nanoseconds: 800 });
-//        const three = two.subtract({ hours: 480, nanoseconds: 1600 });
-//        const four = one.add({ hours: 480, nanoseconds: 1600 });
-//        it(`(${zdt}).subtract({ hours: 240, nanoseconds: 800 }) = ${one}`, () =>
-//          expect(`${one}`).toBe('1969-12-15T12:23:45.678900434+00:00[UTC]'));
-//        it(`(${zdt}).add({ hours: 240, nanoseconds: 800 }) = ${two}`, () =>
-//          expect(`${two}`).toBe('1970-01-04T12:23:45.678902034+00:00[UTC]'));
-//        it(`(${two}).subtract({ hours: 480, nanoseconds: 1600 }) = ${one}`, () => assert(three.equals(one)));
-//        it(`(${one}).add({ hours: 480, nanoseconds: 1600 }) = ${two}`, () => assert(four.equals(two)));
-//      });
-//      it('zdt.add(durationObj)', () => {
-//        const later = zdt.add(Temporal.Duration.from('PT240H0.000000800S'));
-//        expect(`${later}`).toBe('1970-01-04T12:23:45.678902034+00:00[UTC]');
-//      });
-//      it('casts argument', () => {
-//        expect(`${zdt.add('PT240H0.000000800S')}`).toBe('1970-01-04T12:23:45.678902034+00:00[UTC]');
-//      });
-//      const jan31 = ZonedDateTime.from('2020-01-31T15:00-08:00[America/Vancouver]');
-//      it('constrain when ambiguous result', () => {
-//        expect(`${jan31.add({ months: 1 })}`).toBe('2020-02-29T15:00:00-08:00[America/Vancouver]');
-//        expect(`${jan31.add({ months: 1 }, { overflow: 'constrain' })}`).toBe('2020-02-29T15:00:00-08:00[America/Vancouver]');
-//      });
-//      it('symmetrical with regard to negative durations in the time part', () => {
-//        expect(`${jan31.add({ minutes: -30 })}`).toBe('2020-01-31T14:30:00-08:00[America/Vancouver]');
-//        expect(`${jan31.add({ seconds: -30 })}`).toBe('2020-01-31T14:59:30-08:00[America/Vancouver]');
-//      });
-//      it('throw when ambiguous result with reject', () => {
-//        throws(() => jan31.add({ months: 1 }, { overflow: 'reject' }), RangeError);
-//      });
-//      it('invalid overflow', () => {
-//        ['', 'CONSTRAIN', 'balance', 3, null].forEach((overflow) =>
-//          throws(() => zdt.add({ months: 1 }, { overflow }), RangeError)
-//        );
-//      });
-//      it('mixed positive and negative values always throw', () => {
-//        ['constrain', 'reject'].forEach((overflow) =>
-//          throws(() => zdt.add({ hours: 1, minutes: -30 }, { overflow }), RangeError)
-//        );
-//      });
-//      it('options may only be an object or undefined', () => {
-//        [null, 1, 'hello', true, Symbol('foo'), 1n].forEach((badOptions) =>
-//          throws(() => zdt.add({ years: 1 }, badOptions), TypeError)
-//        );
-//        [{}, () => {}, undefined].forEach((options) =>
-//          expect(`${zdt.add({ years: 1 }, options)}`).toBe('1970-12-25T12:23:45.678901234+00:00[UTC]')
-//        );
-//      });
-//      it('object must contain at least one correctly-spelled property', () => {
-//        throws(() => zdt.add({}), TypeError);
-//        throws(() => zdt.add({ hour: 12 }), TypeError);
-//      });
-//      it('incorrectly-spelled properties are ignored', () => {
-//        expect(`${zdt.add({ hour: 1, minutes: 1 })}`).toBe('1969-12-25T12:24:45.678901234+00:00[UTC]');
-//      });
-//    });
+const jan31 = ZonedDateTime.from("2020-01-31T15:00-08:00[America/Vancouver]");
+let one: ZonedDateTime,
+  two: ZonedDateTime,
+  three: ZonedDateTime,
+  four: ZonedDateTime;
 
-//    describe('ZonedDateTime.subtract()', () => {
-//      const zdt = ZonedDateTime.from('1969-12-25T12:23:45.678901234+00:00[UTC]');
-//      it('inst.subtract(durationObj)', () => {
-//        const earlier = zdt.subtract(Temporal.Duration.from('PT240H0.000000800S'));
-//        expect(`${earlier}`).toBe('1969-12-15T12:23:45.678900434+00:00[UTC]');
-//      });
-//      it('casts argument', () => {
-//        expect(`${zdt.subtract('PT240H0.000000800S')}`).toBe('1969-12-15T12:23:45.678900434+00:00[UTC]');
-//      });
-//      const mar31 = ZonedDateTime.from('2020-03-31T15:00-07:00[America/Vancouver]');
-//      it('constrain when ambiguous result', () => {
-//        expect(`${mar31.subtract({ months: 1 })}`).toBe('2020-02-29T15:00:00-08:00[America/Vancouver]');
-//        equal(
-//          `${mar31.subtract({ months: 1 }, { overflow: 'constrain' })}`,
-//          '2020-02-29T15:00:00-08:00[America/Vancouver]'
-//        );
-//      });
-//      it('symmetrical with regard to negative durations in the time part', () => {
-//        expect(`${mar31.subtract({ minutes: -30 })}`).toBe('2020-03-31T15:30:00-07:00[America/Vancouver]');
-//        expect(`${mar31.subtract({ seconds: -30 })}`).toBe('2020-03-31T15:00:30-07:00[America/Vancouver]');
-//      });
-//      it('throw when ambiguous result with reject', () => {
-//        throws(() => mar31.subtract({ months: 1 }, { overflow: 'reject' }), RangeError);
-//      });
-//      it('invalid overflow', () => {
-//        ['', 'CONSTRAIN', 'balance', 3, null].forEach((overflow) =>
-//          throws(() => zdt.subtract({ months: 1 }, { overflow }), RangeError)
-//        );
-//      });
-//      it('mixed positive and negative values always throw', () => {
-//        ['constrain', 'reject'].forEach((overflow) =>
-//          throws(() => zdt.add({ hours: 1, minutes: -30 }, { overflow }), RangeError)
-//        );
-//      });
-//      it('options may only be an object or undefined', () => {
-//        [null, 1, 'hello', true, Symbol('foo'), 1n].forEach((badOptions) =>
-//          throws(() => zdt.subtract({ years: 1 }, badOptions), TypeError)
-//        );
-//        [{}, () => {}, undefined].forEach((options) =>
-//          expect(`${zdt.subtract({ years: 1 }, options)}`).toBe('1968-12-25T12:23:45.678901234+00:00[UTC]')
-//        );
-//      });
-//      it('object must contain at least one correctly-spelled property', () => {
-//        throws(() => zdt.subtract({}), TypeError);
-//        throws(() => zdt.subtract({ hour: 12 }), TypeError);
-//      });
-//      it('incorrectly-spelled properties are ignored', () => {
-//        expect(`${zdt.subtract({ hour: 1, minutes: 1 })}`).toBe('1969-12-25T12:22:45.678901234+00:00[UTC]');
-//      });
-//    });
+describe("ZonedDateTime.add()", () => {
+  describe("cross epoch in ms", () => {
+    zdt = ZonedDateTime.from("1969-12-25T12:23:45.678901234+00:00[UTC]");
+    one = zdt.subtract({ hours: 240, nanoseconds: 800 });
+    two = zdt.add({ hours: 240, nanoseconds: 800 });
+    three = two.subtract({ hours: 480, nanoseconds: 1600 });
+    four = one.add({ hours: 480, nanoseconds: 1600 });
+    it(`(${zdt}).subtract({ hours: 240, nanoseconds: 800 }) = ${one}`, () => {
+      expect(`${one}`).toBe("1969-12-15T12:23:45.678900434+00:00[UTC]");
+    });
+    it(`(${zdt}).add({ hours: 240, nanoseconds: 800 }) = ${two}`, () => {
+      expect(`${two}`).toBe("1970-01-04T12:23:45.678902034+00:00[UTC]");
+    });
+    it(`(${two}).subtract({ hours: 480, nanoseconds: 1600 }) = ${one}`, () => {
+      expect(`${three}`).toBe(`${one}`);
+    });
+    it(`(${one}).add({ hours: 480, nanoseconds: 1600 }) = ${two}`, () => {
+      expect(`${four}`).toBe(`${two}`);
+    });
+  });
+  zdt = ZonedDateTime.from("1969-12-25T12:23:45.678901234+00:00[UTC]");
+  it("zdt.add(durationObj)", () => {
+    const later = zdt.add(Duration.from("PT240H0.000000800S"));
+    expect(`${later}`).toBe("1970-01-04T12:23:45.678902034+00:00[UTC]");
+  });
+  it("constrain when ambiguous result", () => {
+    expect(
+      // @ts-ignore
+      `${jan31.add<DurationLike>({ months: 1 })}`
+    ).toBe("2020-02-29T15:00:00-08:00[America/Vancouver]");
+  });
+  it("symmetrical with regard to negative durations in the time part", () => {
+    expect(
+      // @ts-ignore
+      `${jan31.add<DurationLike>({ minutes: -30 })}`
+    ).toBe("2020-01-31T14:30:00-08:00[America/Vancouver]");
+
+    expect(
+      // @ts-ignore
+      `${jan31.add<DurationLike>({ seconds: -30 })}`
+    ).toBe("2020-01-31T14:59:30-08:00[America/Vancouver]");
+  });
+  it("throw when ambiguous result with reject", () => {
+    expect(() => {
+      jan31.add({ months: 1 }, Overflow.Reject);
+    }).toThrow();
+  });
+  it("mixed positive and negative values always throw", () => {
+    expect(() => {
+      jan31.add({ hours: 1, minutes: -30 }, Overflow.Reject);
+    }).toThrow();
+    expect(() => {
+      jan31.add({ hours: 1, minutes: -30 }, Overflow.Constrain);
+    }).toThrow();
+  });
+});
+
+const mar31 = ZonedDateTime.from("2020-03-31T15:00-07:00[America/Vancouver]");
+
+describe("ZonedDateTime.subtract()", () => {
+  zdt = ZonedDateTime.from("1969-12-25T12:23:45.678901234+00:00[UTC]");
+  it("inst.subtract(durationObj)", () => {
+    const earlier = zdt.subtract(Duration.from("PT240H0.000000800S"));
+    expect(`${earlier}`).toBe("1969-12-15T12:23:45.678900434+00:00[UTC]");
+  });
+  it("constrain when ambiguous result", () => {
+    expect(
+      // @ts-ignore
+      `${mar31.subtract<DurationLike>({ months: 1 })}`
+    ).toBe("2020-02-29T15:00:00-08:00[America/Vancouver]");
+  });
+  it("symmetrical with regard to negative durations in the time part", () => {
+    expect(
+      // @ts-ignore
+      `${mar31.subtract<DurationLike>({ minutes: -30 })}`
+    ).toBe("2020-03-31T15:30:00-07:00[America/Vancouver]");
+    expect(
+      // @ts-ignore
+      `${mar31.subtract<DurationLike>({ seconds: -30 })}`
+    ).toBe("2020-03-31T15:00:30-07:00[America/Vancouver]");
+  });
+  it("mixed positive and negative values always throw", () => {
+    expect(() => {
+      jan31.subtract({ hours: 1, minutes: -30 }, Overflow.Reject);
+    }).toThrow();
+    expect(() => {
+      jan31.subtract({ hours: 1, minutes: -30 }, Overflow.Constrain);
+    }).toThrow();
+  });
+});
 
 //    describe('ZonedDateTime.until()', () => {
 //      const zdt = ZonedDateTime.from('1976-11-18T15:23:30.123456789+01:00[Europe/Vienna]');

@@ -1,8 +1,3 @@
-export const enum Overflow {
-  Reject,
-  Constrain,
-}
-
 export const enum Disambiguation {
   Compatible,
   Earlier,

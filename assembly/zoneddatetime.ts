@@ -1,4 +1,10 @@
-import { DateTimeLike, Instant, PlainDateTime } from "assemblyscript-temporal";
+import {
+  DateTimeLike,
+  DurationLike,
+  Instant,
+  Overflow,
+  PlainDateTime,
+} from "assemblyscript-temporal";
 import { RegExp } from "assemblyscript-regex";
 
 import { TimeZone } from "./timezone";
@@ -14,9 +20,25 @@ export class ZonedDateTime {
     }
   }
 
-  static toZonedDateTime(pdt: PlainDateTime, timezoneString: string): ZonedDateTime {
+  static toZonedDateTime(
+    pdt: PlainDateTime,
+    timezoneString: string
+  ): ZonedDateTime {
     const timezone = new TimeZone(timezoneString);
     const epochNanos = pdt.epochNanoseconds;
+    return new ZonedDateTime(
+      epochNanos - timezone.getOffsetNanosecondsFor(new Instant(epochNanos)),
+      timezone
+    );
+  }
+
+  private static fromPlainDateTime(
+    pdt: PlainDateTime,
+    timezone: TimeZone
+  ): ZonedDateTime {
+    const epochNanos = pdt.epochNanoseconds;
+    // The zdt constructor applies the timezone offset to the epoch nanos - here we apply the
+    // reverse offset. Yes, that's ugly.
     return new ZonedDateTime(
       epochNanos - timezone.getOffsetNanosecondsFor(new Instant(epochNanos)),
       timezone
@@ -56,7 +78,7 @@ export class ZonedDateTime {
   }
 
   private plainDateTime: PlainDateTime;
-  public timezone: TimeZone;
+  readonly timezone: TimeZone;
 
   constructor(public epochNanos: i64, public tz: TimeZone) {
     this.plainDateTime = tz.getPlainDateTimeFor(new Instant(epochNanos));
@@ -179,13 +201,29 @@ export class ZonedDateTime {
   }
 
   with(dateTimeLike: DateTimeLike): ZonedDateTime {
-    const newOne = this.plainDateTime.with(dateTimeLike);
-    const epochNanos = newOne.epochNanoseconds
-    return new ZonedDateTime(
-      epochNanos - this.tz.getOffsetNanosecondsFor(new Instant(epochNanos)),
+    return ZonedDateTime.fromPlainDateTime(
+      this.plainDateTime.with(dateTimeLike),
       this.timezone
     );
   }
 
+  add<T = DurationLike>(
+    durationToAdd: T,
+    overflow: Overflow = Overflow.Constrain
+  ): ZonedDateTime {
+    return ZonedDateTime.fromPlainDateTime(
+      this.plainDateTime.add(durationToAdd, overflow),
+      this.timezone
+    );
+  }
 
+  subtract<T = DurationLike>(
+    durationToAdd: T,
+    overflow: Overflow = Overflow.Constrain
+  ): ZonedDateTime {
+    return ZonedDateTime.fromPlainDateTime(
+      this.plainDateTime.subtract(durationToAdd, overflow),
+      this.timezone
+    );
+  }
 }
