@@ -1,13 +1,14 @@
+//@ts-check
 import fs from "fs";
-import { parserDatabase } from "./parser.mjs";
-import { emit } from "./emitter.mjs";
+import { parseDatabase } from "./parser.js";
+import { emit } from "./emitter.js";
 import prettier from "prettier";
 
 const databases = ["northamerica", "europe"];
 
 const db = databases
   .map((d) => fs.readFileSync(`tzdb/iana/${d}`, "UTF8"))
-  .map(parserDatabase)
+  .map(parseDatabase)
   .reduce(
     (prev, curr) => ({
       zones: prev.zones.concat(curr.zones),

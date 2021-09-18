@@ -12,7 +12,7 @@
     "asbuild:optimized": "asc assembly/index.ts --target release",
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized",
     "asbuild:empty": "asc --config asconfig.empty.json",
-    "generate-tz": "node tzdb/index.mjs",
+    "generate-tz": "node tzdb/index.js",
     "tsrun": "ts-node ts/index.ts"
   },
   "author": "colin.eberhardt@gmail.com",
