@@ -1,9 +1,24 @@
-const dayNameToNumber = (name) =>
-  ["mon", "tue", "wed", "thu", "fri", "sat", "sun"].indexOf(
+// @ts-check
+
+/**
+ * @param name {string}
+ * @returns number
+ */
+function dayNameToNumber(name) {
+  return ["mon", "tue", "wed", "thu", "fri", "sat", "sun"].indexOf(
     name.toLowerCase()
   ) + 1;
+}
 
-const parseDay = (day) => {
+/**
+ * @typedef {{type:'day',value:number}|{type:'last-day',value:number}|{type:'next-day-after',day:number,dayOfWeek:number}|{type:'parse-error'}} Day
+ */
+
+/**
+ * @param day {string}
+ * @returns {Day}
+ */
+function parseDay(day) {
   if (day.match(/^[0-9]+$/)) {
     return {
       type: "day",
@@ -28,9 +43,13 @@ const parseDay = (day) => {
   return {
     type: "parse-error",
   };
-};
+}
 
-const parseTimeZone = (zone) => {
+/**
+ * @param zone {string}
+ * @returns {"local"|"utc"|"undefined"}
+ */
+function parseTimeZone(zone) {
   if (zone == "" || zone == "w") {
     return "local";
   }
@@ -38,9 +57,21 @@ const parseTimeZone = (zone) => {
     return "utc";
   }
   return "undefined";
-};
+}
 
-const parseTime = (time) => {
+/**
+ * @typedef {object} Time
+ * @property {number} hour
+ * @property {number} minute
+ * @property {number} totalMinutes
+ * @property {"undefined" | "local" | "utc"} zone
+ */
+
+/**
+ * @param time {string}
+ * @returns {Time}
+ */
+function parseTime(time) {
   try {
     const parts = time.match(/([0-9]{1,2}):([0-9]{1,2})([a-z])?/);
     const hour = parseInt(parts[1]);
@@ -54,9 +85,13 @@ const parseTime = (time) => {
   } catch {
     throw new Error(`Unable to parse time [${time}]`);
   }
-};
+}
 
-const parseOffset = (offset) => {
+/**
+ * @param offset {string}
+ * @returns {number}
+ */
+function parseOffset(offset) {
   let sign = 1;
   if (offset.startsWith("-")) {
     sign = -1;
@@ -76,16 +111,27 @@ const parseOffset = (offset) => {
   if (parts.length == 1) {
     return sign * parseInt(offset);
   }
-};
+}
 
-const parseEndYear = (endYear, startYear) => {
-  if (endYear == "only") return startYear;
-  if (endYear == "max") return -1;
+/**
+ * @param endYear {"only"|"max"|string}
+ * @param startYear {string}
+ * @returns {string}
+ */
+function parseEndYear(endYear, startYear) {
+  if (endYear == "only")
+    return startYear;
+  if (endYear == "max")
+    return "-1";
   return endYear;
-};
+}
 
-const monthIndex = (month) =>
-  [
+/**
+ * @param month {string}
+ * @returns {number}
+ */
+function monthIndex(month) {
+  return [
     "jan",
     "feb",
     "mar",
@@ -99,14 +145,33 @@ const monthIndex = (month) =>
     "nov",
     "dec",
   ].indexOf(month.toLowerCase()) + 1;
+}
 
-const parseUntil = (until) => {
+/**
+ * @typedef {object} Until
+ * @property {number} year
+ * @property {number} month
+ * @property {number} day
+ * @property {number} hour
+ * @property {number} minute
+ * @property {number} millis
+ * @property {string} zone
+ */
+
+/**
+ * @param until {string}
+ * @returns {Until|undefined}
+ */
+function parseUntil(until) {
   const match = until.match(
     /([0-9]{1,4})\s*(\w{3})?\s*([0-9]{1,2})?\s*([0-9]{1,2})?:?([0-9]{1,2})?(u|s)?/
   );
   if (!match) {
     return;
   }
+  /**
+   * @type {Until}
+   */
   const untilObj = {
     year: parseInt(match[1]),
     month: monthIndex(match[2] ?? "Jan"),
@@ -114,6 +179,7 @@ const parseUntil = (until) => {
     hour: parseInt(match[4] ?? "00"),
     minute: parseInt(match[5] ?? "00"),
     zone: match[6] ?? "u",
+    millis: -1,
   };
   // TODO - consider utc / standard time offsets
   untilObj.millis = Date.UTC(
@@ -124,9 +190,26 @@ const parseUntil = (until) => {
     untilObj.minute
   );
   return untilObj;
-};
+}
 
-const parseRule = (line) => {
+/**
+ * @typedef {object} Rule
+ * @property {string} name
+ * @property {number} startYear
+ * @property {number} endYear
+ * @property {number} inMonth
+ * @property {Day} day
+ * @property {Time} time
+ * @property {number} offset
+ * @property {string} letter
+ * @property {string} line
+ */
+
+/**
+ * @param line {string}
+ * @returns {Rule}
+ */
+function parseRule(line) {
   const cols = line.split(/[\t ]+/);
   return {
     name: cols[1],
@@ -139,9 +222,22 @@ const parseRule = (line) => {
     letter: cols[9],
     line,
   };
-};
+}
 
-const parseZone = (line) => {
+/**
+ * @typedef {object} Offset
+ * @property {number} standardOffset
+ * @property {string} rules
+ * @property {string} format
+ * @property {Until} until
+ * @property {string} line
+ */
+
+/**
+ * @param line {string} 
+ * @returns {Offset}
+ */
+function parseZone(line) {
   try {
     const match = line.match(
       /^(Zone)?\s+(?<name>[0-9a-z_A-Z-\/]*)?\s+(?<offset>-?[0-9]{1,2}:[0-9]{1,2}(:[0-9]{1,2})?)\s+(?<rules>[_A-Za-z-]*|-?[0-9]{1,2}:[0-9]{1,2})\s+(?<format>[A-Z%a-z+-0-9\/]+)\s*(?<until>.*)$/
@@ -157,19 +253,39 @@ const parseZone = (line) => {
   } catch {
     throw new Error(`Unable to parse zone [${line}]`);
   }
-};
+}
 
-// parse the IANA database
-const parserDatabase = (tzDatabase) => {
+/**
+ * @typedef {object} Zone
+ * @property {string} name
+ * @property {Offset[]} ruleRefs
+ */
+
+/**
+ * @typedef {object} Database
+ * @property {Zone[]} zones
+ * @property {Rule[]} rules 
+ */
+
+/**
+ * parse the IANA database
+ * @param tzDatabase {string}
+ * @returns {Database}
+ */
+export function parseDatabase(tzDatabase) {
   const lines = tzDatabase.split("\n");
 
+  /**@type {Rule[]} */
   const rules = [];
+  /**@type {Zone[]} */
   const zones = [];
 
+  /**@type Zone */
   let zone;
   lines.forEach((line, index) => {
     try {
-      if (line.startsWith("#")) return;
+      if (line.startsWith("#"))
+        return;
 
       if (zone) {
         if (line.trim() == "") {
@@ -198,6 +314,4 @@ const parserDatabase = (tzDatabase) => {
     }
   });
   return { zones, rules };
-};
-
-export { parserDatabase };
+}
