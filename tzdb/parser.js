@@ -240,14 +240,14 @@ function parseRule(line) {
 function parseZone(line) {
   try {
     const match = line.match(
-      /^(Zone)?\s+(?<name>[0-9a-z_A-Z-\/]*)?\s+(?<offset>-?[0-9]{1,2}:[0-9]{1,2}(:[0-9]{1,2})?)\s+(?<rules>[_A-Za-z-]*|-?[0-9]{1,2}:[0-9]{1,2})\s+(?<format>[A-Z%a-z+-0-9\/]+)\s*(?<until>.*)$/
+      /^(Zone)?\s+(?<name>[0-9a-zA-Z_\-\/]*)?\s+(?<offset>-?[0-9]{1,2}(:[0-9]{1,2}(:[0-9]{1,2})?)?)\s+(?<rules>[A-Za-z_\-]+|-?[0-9]{1,2}:[0-9]{1,2})\s+(?<format>[A-Za-z0-9+\-%\/]+)(\s+(?<until>.*))?(\s*#(?<comment>.*))?$/
     );
 
     return {
       standardOffset: parseOffset(match.groups.offset),
       rules: match.groups.rules,
       format: match.groups.format,
-      until: parseUntil(match.groups.until),
+      until: parseUntil(match.groups.until ?? ''),
       line,
     };
   } catch {
