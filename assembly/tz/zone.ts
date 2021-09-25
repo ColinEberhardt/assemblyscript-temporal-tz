@@ -1,3 +1,4 @@
+import { Rule } from "./rule";
 
 // a zone is a named collection of zone offsets
 export class Zone {
@@ -21,7 +22,7 @@ export class ZoneOffset {
     // the standard offset applied for this period - e.g. 1:00 (UTC + 1 hour)
     public standardOffsetMillis: i32,
     // an optional reference to a set of rules (if "-" then no rules are referenced)
-    public ruleRef: string,
+    public rules: Rule[],
     // a format string that identifies this zone, e..g BST
     public format: string,
     // this rule offset is applied until the given UTC millis
