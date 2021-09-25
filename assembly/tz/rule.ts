@@ -67,6 +67,28 @@ export class Rule {
   }
 }
 
+export class SimpleRule extends Rule {
+  constructor(
+    offsetMillis: i32,
+    name: string= "SimpleRule"
+  ) {
+    super(
+      name,
+      -1,
+      -1,
+      -1,
+      new DayOfMonth(0),
+      -1,
+      AtTimeZone.UTC,
+      offsetMillis
+    );
+  }
+
+  matches(epochMillis: i64): bool {
+    return true;
+  }
+}
+
 export abstract class DayOfMonthCalculator {
   abstract dayOfMonth(year: i32, month: i32): i32;
 }

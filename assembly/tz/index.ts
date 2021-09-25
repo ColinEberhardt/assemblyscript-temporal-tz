@@ -1,9 +1,5 @@
-import { zones, rules } from "./iana";
+import { zones } from "./iana";
 import { AtTimeZone } from "./rule";
-
-// @ts-ignore
-@lazy
-let n: string;
 
 // returns the offset in milliseconds for a time, defined in UTC as the number
 // of milliseconds from epoch, for a given timezone
@@ -11,13 +7,11 @@ export function offsetForTimezone(tz: string, epochMillis: i64): i32 {
   const zone = zones.get(tz);
   const offset = zone.getOffset(epochMillis);
   // if this zone offset has no rules, apply the standard offset
-  if (offset.ruleRef == "-") {
+  if (offset.rules.length == 0) {
     return offset.standardOffsetMillis;
   }
 
-  // find rules with the given name
-  n = offset.ruleRef;
-  const zoneRules = rules.filter((r) => r.name == n);
+  const zoneRules = offset.rules;
 
   // iterate over the rules and apply those that match
   let currentRuleOffset = 0;
