@@ -286,7 +286,7 @@ export function parseDatabase(tzDatabase) {
   let zone;
   lines.forEach((line, index) => {
     try {
-      if (line.startsWith("#"))
+      if (line.trimLeft().startsWith("#"))
         return;
 
       if (zone) {
