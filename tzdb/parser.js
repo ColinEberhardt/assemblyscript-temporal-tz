@@ -67,13 +67,15 @@ function parseTimeZone(zone) {
  * @property {"undefined" | "local" | "utc"} zone
  */
 
+const timeRE = /([0-9]{1,2}):([0-9]{1,2})([a-z])?/;
+
 /**
  * @param time {string}
  * @returns {Time}
  */
 function parseTime(time) {
   try {
-    const parts = time.match(/([0-9]{1,2}):([0-9]{1,2})([a-z])?/);
+    const parts = time.match(timeRE);
     const hour = parseInt(parts[1]);
     const minute = parseInt(parts[2]);
     return {
@@ -158,14 +160,14 @@ function monthIndex(month) {
  * @property {string} zone
  */
 
+const untilRE = /([0-9]{1,4})\s*(\w{3})?\s*([0-9]{1,2})?\s*([0-9]{1,2})?:?([0-9]{1,2})?(u|s)?/;
+
 /**
  * @param until {string}
  * @returns {Until|undefined}
  */
 function parseUntil(until) {
-  const match = until.match(
-    /([0-9]{1,4})\s*(\w{3})?\s*([0-9]{1,2})?\s*([0-9]{1,2})?:?([0-9]{1,2})?(u|s)?/
-  );
+  const match = until.match(untilRE);
   if (!match) {
     return;
   }
@@ -233,21 +235,21 @@ function parseRule(line) {
  * @property {string} line
  */
 
+const zoneRE = /^(Zone)?\s+(?<name>[0-9a-zA-Z_+\-\/]*)?\s+(?<offset>-?[0-9]{1,2}(:[0-9]{1,2}(:[0-9]{1,2})?)?)\s+(?<rules>[A-Za-z_\-]+|-?[0-9]{1,2}:[0-9]{1,2})\s+(?<format>[A-Za-z0-9+\-%\/]+)(\s+(?<until>.*))?(\s*#(?<comment>.*))?$/
+
 /**
  * @param line {string} 
  * @returns {Offset}
  */
 function parseZone(line) {
   try {
-    const match = line.match(
-      /^(Zone)?\s+(?<name>[0-9a-z_A-Z-\/]*)?\s+(?<offset>-?[0-9]{1,2}:[0-9]{1,2}(:[0-9]{1,2})?)\s+(?<rules>[_A-Za-z-]*|-?[0-9]{1,2}:[0-9]{1,2})\s+(?<format>[A-Z%a-z+-0-9\/]+)\s*(?<until>.*)$/
-    );
+    const match = line.match(zoneRE);
 
     return {
       standardOffset: parseOffset(match.groups.offset),
       rules: match.groups.rules,
       format: match.groups.format,
-      until: parseUntil(match.groups.until),
+      until: parseUntil(match.groups.until ?? ''),
       line,
     };
   } catch {
@@ -284,7 +286,7 @@ export function parseDatabase(tzDatabase) {
   let zone;
   lines.forEach((line, index) => {
     try {
-      if (line.startsWith("#"))
+      if (line.trimLeft().startsWith("#"))
         return;
 
       if (zone) {

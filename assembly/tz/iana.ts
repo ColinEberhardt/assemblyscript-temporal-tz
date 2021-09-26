@@ -888,6 +888,105 @@ zones.set(
   ])
 );
 zones.set(
+  "America/Pangnirtung",
+  new Zone("America/Pangnirtung", [
+    // Zone America/Pangnirtung 0    -	-00	1921 # trading post est.
+    new ZoneOffset(0, "-", "-00", -1543622400000),
+    //     		-4:00	NT_YK	A%sT	1995 Apr Sun>=1  2:00
+    new ZoneOffset(-14400000, "NT_YK", "A%sT", 799286400000),
+    //     		-5:00	Canada	E%sT	1999 Oct 31  2:00
+    new ZoneOffset(-18000000, "Canada", "E%sT", 944013600000),
+    //     		-6:00	Canada	C%sT	2000 Oct 29  2:00
+    new ZoneOffset(-21600000, "Canada", "C%sT", 975463200000),
+    //     		-5:00	Canada	E%sT
+    new ZoneOffset(-18000000, "Canada", "E%sT", -1),
+  ])
+);
+zones.set(
+  "America/Iqaluit",
+  new Zone("America/Iqaluit", [
+    // Zone America/Iqaluit    0	-	-00	1942 Aug # Frobisher Bay est.
+    new ZoneOffset(0, "-", "-00", -862617600000),
+    //     		-5:00	NT_YK	E%sT	1999 Oct 31  2:00
+    new ZoneOffset(-18000000, "NT_YK", "E%sT", 944013600000),
+    //     		-6:00	Canada	C%sT	2000 Oct 29  2:00
+    new ZoneOffset(-21600000, "Canada", "C%sT", 975463200000),
+    //     		-5:00	Canada	E%sT
+    new ZoneOffset(-18000000, "Canada", "E%sT", -1),
+  ])
+);
+zones.set(
+  "America/Resolute",
+  new Zone("America/Resolute", [
+    // Zone America/Resolute    0	-	-00	1947 Aug 31 # Resolute founded
+    new ZoneOffset(0, "-", "-00", -702259200000),
+    //     		-6:00	NT_YK	C%sT	2000 Oct 29  2:00
+    new ZoneOffset(-21600000, "NT_YK", "C%sT", 975463200000),
+    //     		-5:00	-	EST	2001 Apr  1  3:00
+    new ZoneOffset(-18000000, "-", "EST", 988686000000),
+    //     		-6:00	Canada	C%sT	2006 Oct 29  2:00
+    new ZoneOffset(-21600000, "Canada", "C%sT", 1164765600000),
+    //     		-5:00	-	EST	2007 Mar 11  3:00
+    new ZoneOffset(-18000000, "-", "EST", 1176260400000),
+    //     		-6:00	Canada	C%sT
+    new ZoneOffset(-21600000, "Canada", "C%sT", -1),
+  ])
+);
+zones.set(
+  "America/Rankin_Inlet",
+  new Zone("America/Rankin_Inlet", [
+    // Zone America/Rankin_Inlet 0    -	-00	1957 # Rankin Inlet founded
+    new ZoneOffset(0, "-", "-00", -407548800000),
+    //     		-6:00	NT_YK	C%sT	2000 Oct 29  2:00
+    new ZoneOffset(-21600000, "NT_YK", "C%sT", 975463200000),
+    //     		-5:00	-	EST	2001 Apr  1  3:00
+    new ZoneOffset(-18000000, "-", "EST", 988686000000),
+    //     		-6:00	Canada	C%sT
+    new ZoneOffset(-21600000, "Canada", "C%sT", -1),
+  ])
+);
+zones.set(
+  "America/Cambridge_Bay",
+  new Zone("America/Cambridge_Bay", [
+    // Zone America/Cambridge_Bay 0    -	-00	1920 # trading post est.?
+    new ZoneOffset(0, "-", "-00", -1575244800000),
+    //     		-7:00	NT_YK	M%sT	1999 Oct 31  2:00
+    new ZoneOffset(-25200000, "NT_YK", "M%sT", 944013600000),
+    //     		-6:00	Canada	C%sT	2000 Oct 29  2:00
+    new ZoneOffset(-21600000, "Canada", "C%sT", 975463200000),
+    //     		-5:00	-	EST	2000 Nov  5  0:00
+    new ZoneOffset(-18000000, "-", "EST", 975974400000),
+    //     		-6:00	-	CST	2001 Apr  1  3:00
+    new ZoneOffset(-21600000, "-", "CST", 988686000000),
+    //     		-7:00	Canada	M%sT
+    new ZoneOffset(-25200000, "Canada", "M%sT", -1),
+  ])
+);
+zones.set(
+  "America/Yellowknife",
+  new Zone("America/Yellowknife", [
+    // Zone America/Yellowknife 0    -	-00	1935 # Yellowknife founded?
+    new ZoneOffset(0, "-", "-00", -1101859200000),
+    //     		-7:00	NT_YK	M%sT	1980
+    new ZoneOffset(-25200000, "NT_YK", "M%sT", 318211200000),
+    //     		-7:00	Canada	M%sT
+    new ZoneOffset(-25200000, "Canada", "M%sT", -1),
+  ])
+);
+zones.set(
+  "America/Inuvik",
+  new Zone("America/Inuvik", [
+    // Zone America/Inuvik    0	-	-00	1953 # Inuvik founded
+    new ZoneOffset(0, "-", "-00", -533779200000),
+    //     		-8:00	NT_YK	P%sT	1979 Apr lastSun  2:00
+    new ZoneOffset(-28800000, "NT_YK", "P%sT", 294364800000),
+    //     		-7:00	NT_YK	M%sT	1980
+    new ZoneOffset(-25200000, "NT_YK", "M%sT", 318211200000),
+    //     		-7:00	Canada	M%sT
+    new ZoneOffset(-25200000, "Canada", "M%sT", -1),
+  ])
+);
+zones.set(
   "America/Whitehorse",
   new Zone("America/Whitehorse", [
     // Zone America/Whitehorse    -9:00:12 -	LMT	1900 Aug 20
@@ -1378,9 +1477,9 @@ zones.set(
     //     		-4:00	-	AST	1980 May
     new ZoneOffset(-14400000, "-", "AST", 328665600000),
     //     		-3:00	-	-03	1987
-    new ZoneOffset(-10800000, "-", "-0", -2113862400000),
+    new ZoneOffset(-10800000, "-", "-03", 539136000000),
     //     		-3:00	Canada	-03/-02
-    new ZoneOffset(-10800000, "Canada", "-0", -2111702400000),
+    new ZoneOffset(-10800000, "Canada", "-03/-02", -1),
   ])
 );
 zones.set(
@@ -1527,7 +1626,7 @@ zones.set(
     //     		2:00	Russia	EE%sT	2011 Mar 27  2:00s
     new ZoneOffset(7200000, "Russia", "EE%sT", 1303869600000),
     //     		3:00	-	+03
-    new ZoneOffset(10800000, "-", "+0", -2111702400000),
+    new ZoneOffset(10800000, "-", "+03", -1),
   ])
 );
 zones.set(
@@ -1631,9 +1730,9 @@ zones.set(
     // Zone America/Danmarkshavn -1:14:40 -    LMT	1916 Jul 28
     new ZoneOffset(-4480000, "-", "LMT", -1683417600000),
     //     		-3:00	-	-03	1980 Apr  6  2:00
-    new ZoneOffset(-10800000, "-", "-0", -2114467200000),
+    new ZoneOffset(-10800000, "-", "-03", 326426400000),
     //     		-3:00	EU	-03/-02	1996
-    new ZoneOffset(-10800000, "EU", "-0", -2111702400000),
+    new ZoneOffset(-10800000, "EU", "-03/-02", 823132800000),
     //     		0:00	-	GMT
     new ZoneOffset(0, "-", "GMT", -1),
   ])
@@ -1644,17 +1743,27 @@ zones.set(
     // Zone America/Scoresbysund -1:27:52 -    LMT	1916 Jul 28 # Ittoqqortoormiit
     new ZoneOffset(-5272000, "-", "LMT", -1683417600000),
     //     		-2:00	-	-02	1980 Apr  6  2:00
-    new ZoneOffset(-7200000, "-", "-0", -2146003200000),
+    new ZoneOffset(-7200000, "-", "-02", 326426400000),
     //     		-2:00	C-Eur	-02/-01	1981 Mar 29
-    new ZoneOffset(-7200000, "C-Eur", "-0", -2143238400000),
+    new ZoneOffset(-7200000, "C-Eur", "-02/-01", 357350400000),
     //     		-1:00	EU	-01/+00
-    new ZoneOffset(-3600000, "EU", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "EU", "-01/+00", -1),
+  ])
+);
+zones.set(
+  "America/Nuuk",
+  new Zone("America/Nuuk", [
     // Zone America/Nuuk    -3:26:56 -	LMT	1916 Jul 28 # Godthåb
     new ZoneOffset(-12416000, "-", "LMT", -1683417600000),
     //     		-3:00	-	-03	1980 Apr  6  2:00
-    new ZoneOffset(-10800000, "-", "-0", -2114467200000),
+    new ZoneOffset(-10800000, "-", "-03", 326426400000),
     //     		-3:00	EU	-03/-02
-    new ZoneOffset(-10800000, "EU", "-0", -2111702400000),
+    new ZoneOffset(-10800000, "EU", "-03/-02", -1),
+  ])
+);
+zones.set(
+  "America/Thule",
+  new Zone("America/Thule", [
     // Zone America/Thule    -4:35:08 -	LMT	1916 Jul 28 # Pituffik
     new ZoneOffset(-16508000, "-", "LMT", -1683417600000),
     //     		-4:00	Thule	A%sT
@@ -1792,7 +1901,7 @@ zones.set(
     // Zone Atlantic/Reykjavik    -1:28	-	LMT	1908
     new ZoneOffset(-5280000, "-", "LMT", -1953936000000),
     //     		-1:00	Iceland	-01/+00	1968 Apr  7  1:00s
-    new ZoneOffset(-3600000, "Iceland", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "Iceland", "-01/+00", -52182000000),
     //     		 0:00	-	GMT
     new ZoneOffset(0, "-", "GMT", -1),
   ])
@@ -1964,7 +2073,7 @@ zones.set(
     //     		0:19:32	Neth	%s	1937 Jul  1
     new ZoneOffset(1172000, "Neth", "%s", -1023062400000),
     //     		0:20	Neth +0020/+0120 1940 May 16  0:00
-    new ZoneOffset(1200000, "Neth", "+00", -1575244800000),
+    new ZoneOffset(1200000, "Neth", "+0020/+0120", -932342400000),
     //     		1:00	C-Eur	CE%sT	1945 Apr  2  2:00
     new ZoneOffset(3600000, "C-Eur", "CE%sT", -778456800000),
     //     		1:00	Neth	CE%sT	1977
@@ -2040,53 +2149,58 @@ zones.set(
     //     		-1:54:32 -	HMT	1912 Jan  1  2:00u # Horta MT
     new ZoneOffset(-6872000, "-", "HMT", -1827698400000),
     //     		-2:00	Port	-02/-01	1942 Apr 25 22:00s
-    new ZoneOffset(-7200000, "Port", "-0", -2143238400000),
+    new ZoneOffset(-7200000, "Port", "-02/-01", -871092000000),
     //     		-2:00	Port	+00	1942 Aug 15 22:00s
     new ZoneOffset(-7200000, "Port", "+00", -861328800000),
     //     		-2:00	Port	-02/-01	1943 Apr 17 22:00s
-    new ZoneOffset(-7200000, "Port", "-0", -2143238400000),
+    new ZoneOffset(-7200000, "Port", "-02/-01", -840247200000),
     //     		-2:00	Port	+00	1943 Aug 28 22:00s
     new ZoneOffset(-7200000, "Port", "+00", -828669600000),
     //     		-2:00	Port	-02/-01	1944 Apr 22 22:00s
-    new ZoneOffset(-7200000, "Port", "-0", -2143238400000),
+    new ZoneOffset(-7200000, "Port", "-02/-01", -808192800000),
     //     		-2:00	Port	+00	1944 Aug 26 22:00s
     new ZoneOffset(-7200000, "Port", "+00", -797220000000),
     //     		-2:00	Port	-02/-01	1945 Apr 21 22:00s
-    new ZoneOffset(-7200000, "Port", "-0", -2143238400000),
+    new ZoneOffset(-7200000, "Port", "-02/-01", -776743200000),
     //     		-2:00	Port	+00	1945 Aug 25 22:00s
     new ZoneOffset(-7200000, "Port", "+00", -765770400000),
     //     		-2:00	Port	-02/-01	1966 Apr  3  2:00
-    new ZoneOffset(-7200000, "Port", "-0", -2143238400000),
+    new ZoneOffset(-7200000, "Port", "-02/-01", -115682400000),
     //     		-1:00	Port	-01/+00	1983 Sep 25  1:00s
-    new ZoneOffset(-3600000, "Port", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "Port", "-01/+00", 435891600000),
     //     		-1:00	W-Eur	-01/+00	1992 Sep 27  1:00s
-    new ZoneOffset(-3600000, "W-Eur", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "W-Eur", "-01/+00", 720147600000),
     //     		 0:00	EU	WE%sT	1993 Mar 28  1:00u
     new ZoneOffset(0, "EU", "WE%sT", 735958800000),
     //     		-1:00	EU	-01/+00
-    new ZoneOffset(-3600000, "EU", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "EU", "-01/+00", -1),
+  ])
+);
+zones.set(
+  "Atlantic/Madeira",
+  new Zone("Atlantic/Madeira", [
     // Zone Atlantic/Madeira    -1:07:36 -	LMT	1884        # Funchal
     new ZoneOffset(-4056000, "-", "LMT", -2711232000000),
     //     		-1:07:36 -	FMT	1912 Jan  1  1:00u # Funchal MT
     new ZoneOffset(-4056000, "-", "FMT", -1827702000000),
     //     		-1:00	Port	-01/+00	1942 Apr 25 22:00s
-    new ZoneOffset(-3600000, "Port", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "Port", "-01/+00", -871092000000),
     //     		-1:00	Port	+01	1942 Aug 15 22:00s
-    new ZoneOffset(-3600000, "Port", "+0", -2177366400000),
+    new ZoneOffset(-3600000, "Port", "+01", -861328800000),
     //     		-1:00	Port	-01/+00	1943 Apr 17 22:00s
-    new ZoneOffset(-3600000, "Port", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "Port", "-01/+00", -840247200000),
     //     		-1:00	Port	+01	1943 Aug 28 22:00s
-    new ZoneOffset(-3600000, "Port", "+0", -2177280000000),
+    new ZoneOffset(-3600000, "Port", "+01", -828669600000),
     //     		-1:00	Port	-01/+00	1944 Apr 22 22:00s
-    new ZoneOffset(-3600000, "Port", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "Port", "-01/+00", -808192800000),
     //     		-1:00	Port	+01	1944 Aug 26 22:00s
-    new ZoneOffset(-3600000, "Port", "+0", -2177193600000),
+    new ZoneOffset(-3600000, "Port", "+01", -797220000000),
     //     		-1:00	Port	-01/+00	1945 Apr 21 22:00s
-    new ZoneOffset(-3600000, "Port", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "Port", "-01/+00", -776743200000),
     //     		-1:00	Port	+01	1945 Aug 25 22:00s
-    new ZoneOffset(-3600000, "Port", "+0", -2177107200000),
+    new ZoneOffset(-3600000, "Port", "+01", -765770400000),
     //     		-1:00	Port	-01/+00	1966 Apr  3  2:00
-    new ZoneOffset(-3600000, "Port", "-0", -2174774400000),
+    new ZoneOffset(-3600000, "Port", "-01/+00", -115682400000),
     //     		 0:00	Port	WE%sT	1983 Sep 25  1:00s
     new ZoneOffset(0, "Port", "WE%sT", 435891600000),
     //     		 0:00	EU	WE%sT
@@ -2126,7 +2240,7 @@ zones.set(
     //     		 2:00	Russia	EE%sT	2011 Mar 27  2:00s
     new ZoneOffset(7200000, "Russia", "EE%sT", 1303869600000),
     //     		 3:00	-	+03	2014 Oct 26  2:00s
-    new ZoneOffset(10800000, "-", "+0", -2114121600000),
+    new ZoneOffset(10800000, "-", "+03", 1416967200000),
     //     		 2:00	-	EET
     new ZoneOffset(7200000, "-", "EET", -1),
   ])
@@ -2201,21 +2315,21 @@ zones.set(
     // Zone Europe/Astrakhan     3:12:12 -	LMT	1924 May
     new ZoneOffset(11532000, "-", "LMT", -1438560000000),
     //     		 3:00	-	+03	1930 Jun 21
-    new ZoneOffset(10800000, "-", "+0", -2114467200000),
+    new ZoneOffset(10800000, "-", "+03", -1244937600000),
     //     		 4:00	Russia	+04/+05	1989 Mar 26  2:00s
-    new ZoneOffset(14400000, "Russia", "+0", -2080166400000),
+    new ZoneOffset(14400000, "Russia", "+04/+05", 609559200000),
     //     		 3:00	Russia	+03/+04	1991 Mar 31  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 673063200000),
     //     		 4:00	-	+04	1992 Mar 29  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082758400000),
+    new ZoneOffset(14400000, "-", "+04", 704512800000),
     //     		 3:00	Russia	+03/+04	2011 Mar 27  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 1303869600000),
     //     		 4:00	-	+04	2014 Oct 26  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082585600000),
+    new ZoneOffset(14400000, "-", "+04", 1416967200000),
     //     		 3:00	-	+03	2016 Mar 27  2:00s
-    new ZoneOffset(10800000, "-", "+0", -2113948800000),
+    new ZoneOffset(10800000, "-", "+03", 1461722400000),
     //     		 4:00	-	+04
-    new ZoneOffset(14400000, "-", "+0", -2080166400000),
+    new ZoneOffset(14400000, "-", "+04", -1),
   ])
 );
 zones.set(
@@ -2224,25 +2338,25 @@ zones.set(
     // Zone Europe/Volgograd     2:57:40 -	LMT	1920 Jan  3
     new ZoneOffset(10660000, "-", "LMT", -1575072000000),
     //     		 3:00	-	+03	1930 Jun 21
-    new ZoneOffset(10800000, "-", "+0", -2114467200000),
+    new ZoneOffset(10800000, "-", "+03", -1244937600000),
     //     		 4:00	-	+04	1961 Nov 11
-    new ZoneOffset(14400000, "-", "+0", -2082844800000),
+    new ZoneOffset(14400000, "-", "+04", -254275200000),
     //     		 4:00	Russia	+04/+05	1988 Mar 27  2:00s
-    new ZoneOffset(14400000, "Russia", "+0", -2080166400000),
+    new ZoneOffset(14400000, "Russia", "+04/+05", 578109600000),
     //     		 3:00	Russia	+03/+04	1991 Mar 31  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 673063200000),
     //     		 4:00	-	+04	1992 Mar 29  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082758400000),
+    new ZoneOffset(14400000, "-", "+04", 704512800000),
     //     		 3:00	Russia	+03/+04	2011 Mar 27  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 1303869600000),
     //     		 4:00	-	+04	2014 Oct 26  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082585600000),
+    new ZoneOffset(14400000, "-", "+04", 1416967200000),
     //     		 3:00	-	+03	2018 Oct 28  2:00s
-    new ZoneOffset(10800000, "-", "+0", -2113776000000),
+    new ZoneOffset(10800000, "-", "+03", 1543370400000),
     //     		 4:00	-	+04	2020 Dec 27  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082931200000),
+    new ZoneOffset(14400000, "-", "+04", 1611712800000),
     //     		 3:00	-	+03
-    new ZoneOffset(10800000, "-", "+0", -2111702400000),
+    new ZoneOffset(10800000, "-", "+03", -1),
   ])
 );
 zones.set(
@@ -2251,21 +2365,21 @@ zones.set(
     // Zone Europe/Saratov     3:04:18 -	LMT	1919 Jul  1  0:00u
     new ZoneOffset(11058000, "-", "LMT", -1591142400000),
     //     		 3:00	-	+03	1930 Jun 21
-    new ZoneOffset(10800000, "-", "+0", -2114467200000),
+    new ZoneOffset(10800000, "-", "+03", -1244937600000),
     //     		 4:00	Russia	+04/+05	1988 Mar 27  2:00s
-    new ZoneOffset(14400000, "Russia", "+0", -2080166400000),
+    new ZoneOffset(14400000, "Russia", "+04/+05", 578109600000),
     //     		 3:00	Russia	+03/+04	1991 Mar 31  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 673063200000),
     //     		 4:00	-	+04	1992 Mar 29  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082758400000),
+    new ZoneOffset(14400000, "-", "+04", 704512800000),
     //     		 3:00	Russia	+03/+04	2011 Mar 27  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 1303869600000),
     //     		 4:00	-	+04	2014 Oct 26  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082585600000),
+    new ZoneOffset(14400000, "-", "+04", 1416967200000),
     //     		 3:00	-	+03	2016 Dec  4  2:00s
-    new ZoneOffset(10800000, "-", "+0", -2113948800000),
+    new ZoneOffset(10800000, "-", "+03", 1483495200000),
     //     		 4:00	-	+04
-    new ZoneOffset(14400000, "-", "+0", -2080166400000),
+    new ZoneOffset(14400000, "-", "+04", -1),
   ])
 );
 zones.set(
@@ -2274,19 +2388,19 @@ zones.set(
     // Zone Europe/Kirov     3:18:48 -	LMT	1919 Jul  1  0:00u
     new ZoneOffset(11928000, "-", "LMT", -1591142400000),
     //     		 3:00	-	+03	1930 Jun 21
-    new ZoneOffset(10800000, "-", "+0", -2114467200000),
+    new ZoneOffset(10800000, "-", "+03", -1244937600000),
     //     		 4:00	Russia	+04/+05	1989 Mar 26  2:00s
-    new ZoneOffset(14400000, "Russia", "+0", -2080166400000),
+    new ZoneOffset(14400000, "Russia", "+04/+05", 609559200000),
     //     		 3:00	Russia	+03/+04	1991 Mar 31  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 673063200000),
     //     		 4:00	-	+04	1992 Mar 29  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082758400000),
+    new ZoneOffset(14400000, "-", "+04", 704512800000),
     //     		 3:00	Russia	+03/+04	2011 Mar 27  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 1303869600000),
     //     		 4:00	-	+04	2014 Oct 26  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082585600000),
+    new ZoneOffset(14400000, "-", "+04", 1416967200000),
     //     		 3:00	-	+03
-    new ZoneOffset(10800000, "-", "+0", -2111702400000),
+    new ZoneOffset(10800000, "-", "+03", -1),
   ])
 );
 zones.set(
@@ -2295,23 +2409,23 @@ zones.set(
     // Zone Europe/Samara     3:20:20 -	LMT	1919 Jul  1  0:00u
     new ZoneOffset(12020000, "-", "LMT", -1591142400000),
     //     		 3:00	-	+03	1930 Jun 21
-    new ZoneOffset(10800000, "-", "+0", -2114467200000),
+    new ZoneOffset(10800000, "-", "+03", -1244937600000),
     //     		 4:00	-	+04	1935 Jan 27
-    new ZoneOffset(14400000, "-", "+0", -2082499200000),
+    new ZoneOffset(14400000, "-", "+04", -1099612800000),
     //     		 4:00	Russia	+04/+05	1989 Mar 26  2:00s
-    new ZoneOffset(14400000, "Russia", "+0", -2080166400000),
+    new ZoneOffset(14400000, "Russia", "+04/+05", 609559200000),
     //     		 3:00	Russia	+03/+04	1991 Mar 31  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 673063200000),
     //     		 2:00	Russia	+02/+03	1991 Sep 29  2:00s
-    new ZoneOffset(7200000, "Russia", "+0", -2143238400000),
+    new ZoneOffset(7200000, "Russia", "+02/+03", 688701600000),
     //     		 3:00	-	+03	1991 Oct 20  3:00
-    new ZoneOffset(10800000, "-", "+0", -2114380800000),
+    new ZoneOffset(10800000, "-", "+03", 690606000000),
     //     		 4:00	Russia	+04/+05	2010 Mar 28  2:00s
-    new ZoneOffset(14400000, "Russia", "+0", -2080166400000),
+    new ZoneOffset(14400000, "Russia", "+04/+05", 1272420000000),
     //     		 3:00	Russia	+03/+04	2011 Mar 27  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 1303869600000),
     //     		 4:00	-	+04
-    new ZoneOffset(14400000, "-", "+0", -2080166400000),
+    new ZoneOffset(14400000, "-", "+04", -1),
   ])
 );
 zones.set(
@@ -2320,21 +2434,21 @@ zones.set(
     // Zone Europe/Ulyanovsk     3:13:36 -	LMT	1919 Jul  1  0:00u
     new ZoneOffset(11616000, "-", "LMT", -1591142400000),
     //     		 3:00	-	+03	1930 Jun 21
-    new ZoneOffset(10800000, "-", "+0", -2114467200000),
+    new ZoneOffset(10800000, "-", "+03", -1244937600000),
     //     		 4:00	Russia	+04/+05	1989 Mar 26  2:00s
-    new ZoneOffset(14400000, "Russia", "+0", -2080166400000),
+    new ZoneOffset(14400000, "Russia", "+04/+05", 609559200000),
     //     		 3:00	Russia	+03/+04	1991 Mar 31  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 673063200000),
     //     		 2:00	Russia	+02/+03	1992 Jan 19  2:00s
-    new ZoneOffset(7200000, "Russia", "+0", -2143238400000),
+    new ZoneOffset(7200000, "Russia", "+02/+03", 698464800000),
     //     		 3:00	Russia	+03/+04	2011 Mar 27  2:00s
-    new ZoneOffset(10800000, "Russia", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Russia", "+03/+04", 1303869600000),
     //     		 4:00	-	+04	2014 Oct 26  2:00s
-    new ZoneOffset(14400000, "-", "+0", -2082585600000),
+    new ZoneOffset(14400000, "-", "+04", 1416967200000),
     //     		 3:00	-	+03	2016 Mar 27  2:00s
-    new ZoneOffset(10800000, "-", "+0", -2113948800000),
+    new ZoneOffset(10800000, "-", "+03", 1461722400000),
     //     		 4:00	-	+04
-    new ZoneOffset(14400000, "-", "+0", -2080166400000),
+    new ZoneOffset(14400000, "-", "+04", -1),
   ])
 );
 zones.set(
@@ -2345,17 +2459,17 @@ zones.set(
     //     		 3:45:05 -	PMT	1919 Jul 15  4:00
     new ZoneOffset(13505000, "-", "PMT", -1589918400000),
     //     		 4:00	-	+04	1930 Jun 21
-    new ZoneOffset(14400000, "-", "+0", -2082931200000),
+    new ZoneOffset(14400000, "-", "+04", -1244937600000),
     //     		 5:00	Russia	+05/+06	1991 Mar 31  2:00s
-    new ZoneOffset(18000000, "Russia", "+0", -2048544000000),
+    new ZoneOffset(18000000, "Russia", "+05/+06", 673063200000),
     //     		 4:00	Russia	+04/+05	1992 Jan 19  2:00s
-    new ZoneOffset(14400000, "Russia", "+0", -2080166400000),
+    new ZoneOffset(14400000, "Russia", "+04/+05", 698464800000),
     //     		 5:00	Russia	+05/+06	2011 Mar 27  2:00s
-    new ZoneOffset(18000000, "Russia", "+0", -2048544000000),
+    new ZoneOffset(18000000, "Russia", "+05/+06", 1303869600000),
     //     		 6:00	-	+06	2014 Oct 26  2:00s
-    new ZoneOffset(21600000, "-", "+0", -2019427200000),
+    new ZoneOffset(21600000, "-", "+06", 1416967200000),
     //     		 5:00	-	+05
-    new ZoneOffset(18000000, "-", "+0", -2048544000000),
+    new ZoneOffset(18000000, "-", "+05", -1),
   ])
 );
 zones.set(
@@ -2364,17 +2478,17 @@ zones.set(
     // Zone Asia/Omsk    	 4:53:30 -	LMT	1919 Nov 14
     new ZoneOffset(17610000, "-", "LMT", -1579478400000),
     //     		 5:00	-	+05	1930 Jun 21
-    new ZoneOffset(18000000, "-", "+0", -2051308800000),
+    new ZoneOffset(18000000, "-", "+05", -1244937600000),
     //     		 6:00	Russia	+06/+07	1991 Mar 31  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 673063200000),
     //     		 5:00	Russia	+05/+06	1992 Jan 19  2:00s
-    new ZoneOffset(18000000, "Russia", "+0", -2048544000000),
+    new ZoneOffset(18000000, "Russia", "+05/+06", 698464800000),
     //     		 6:00	Russia	+06/+07	2011 Mar 27  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 1303869600000),
     //     		 7:00	-	+07	2014 Oct 26  2:00s
-    new ZoneOffset(25200000, "-", "+0", -1987891200000),
+    new ZoneOffset(25200000, "-", "+07", 1416967200000),
     //     		 6:00	-	+06
-    new ZoneOffset(21600000, "-", "+0", -2017008000000),
+    new ZoneOffset(21600000, "-", "+06", -1),
   ])
 );
 zones.set(
@@ -2383,21 +2497,21 @@ zones.set(
     // Zone Asia/Barnaul     5:35:00 -	LMT	1919 Dec 10
     new ZoneOffset(20100000, "-", "LMT", -1577145600000),
     //     		 6:00	-	+06	1930 Jun 21
-    new ZoneOffset(21600000, "-", "+0", -2019772800000),
+    new ZoneOffset(21600000, "-", "+06", -1244937600000),
     //     		 7:00	Russia	+07/+08	1991 Mar 31  2:00s
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 673063200000),
     //     		 6:00	Russia	+06/+07	1992 Jan 19  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 698464800000),
     //     		 7:00	Russia	+07/+08	1995 May 28
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 804297600000),
     //     		 6:00	Russia	+06/+07	2011 Mar 27  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 1303869600000),
     //     		 7:00	-	+07	2014 Oct 26  2:00s
-    new ZoneOffset(25200000, "-", "+0", -1987891200000),
+    new ZoneOffset(25200000, "-", "+07", 1416967200000),
     //     		 6:00	-	+06	2016 Mar 27  2:00s
-    new ZoneOffset(21600000, "-", "+0", -2019254400000),
+    new ZoneOffset(21600000, "-", "+06", 1461722400000),
     //     		 7:00	-	+07
-    new ZoneOffset(25200000, "-", "+0", -1985472000000),
+    new ZoneOffset(25200000, "-", "+07", -1),
   ])
 );
 zones.set(
@@ -2406,21 +2520,21 @@ zones.set(
     // Zone Asia/Novosibirsk     5:31:40 -	LMT	1919 Dec 14  6:00
     new ZoneOffset(19900000, "-", "LMT", -1576778400000),
     //     		 6:00	-	+06	1930 Jun 21
-    new ZoneOffset(21600000, "-", "+0", -2019772800000),
+    new ZoneOffset(21600000, "-", "+06", -1244937600000),
     //     		 7:00	Russia	+07/+08	1991 Mar 31  2:00s
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 673063200000),
     //     		 6:00	Russia	+06/+07	1992 Jan 19  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 698464800000),
     //     		 7:00	Russia	+07/+08	1993 May 23 # say Shanks & P.
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 740793600000),
     //     		 6:00	Russia	+06/+07	2011 Mar 27  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 1303869600000),
     //     		 7:00	-	+07	2014 Oct 26  2:00s
-    new ZoneOffset(25200000, "-", "+0", -1987891200000),
+    new ZoneOffset(25200000, "-", "+07", 1416967200000),
     //     		 6:00	-	+06	2016 Jul 24  2:00s
-    new ZoneOffset(21600000, "-", "+0", -2019254400000),
+    new ZoneOffset(21600000, "-", "+06", 1472004000000),
     //     		 7:00	-	+07
-    new ZoneOffset(25200000, "-", "+0", -1985472000000),
+    new ZoneOffset(25200000, "-", "+07", -1),
   ])
 );
 zones.set(
@@ -2429,21 +2543,21 @@ zones.set(
     // Zone    Asia/Tomsk	 5:39:51 -	LMT	1919 Dec 22
     new ZoneOffset(20391000, "-", "LMT", -1576108800000),
     //     		 6:00	-	+06	1930 Jun 21
-    new ZoneOffset(21600000, "-", "+0", -2019772800000),
+    new ZoneOffset(21600000, "-", "+06", -1244937600000),
     //     		 7:00	Russia	+07/+08	1991 Mar 31  2:00s
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 673063200000),
     //     		 6:00	Russia	+06/+07	1992 Jan 19  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 698464800000),
     //     		 7:00	Russia	+07/+08	2002 May  1  3:00
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 1022900400000),
     //     		 6:00	Russia	+06/+07	2011 Mar 27  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 1303869600000),
     //     		 7:00	-	+07	2014 Oct 26  2:00s
-    new ZoneOffset(25200000, "-", "+0", -1987891200000),
+    new ZoneOffset(25200000, "-", "+07", 1416967200000),
     //     		 6:00	-	+06	2016 May 29  2:00s
-    new ZoneOffset(21600000, "-", "+0", -2019254400000),
+    new ZoneOffset(21600000, "-", "+06", 1467165600000),
     //     		 7:00	-	+07
-    new ZoneOffset(25200000, "-", "+0", -1985472000000),
+    new ZoneOffset(25200000, "-", "+07", -1),
   ])
 );
 zones.set(
@@ -2452,17 +2566,17 @@ zones.set(
     // Zone Asia/Novokuznetsk     5:48:48 -	LMT	1924 May  1
     new ZoneOffset(20928000, "-", "LMT", -1438560000000),
     //     		 6:00	-	+06	1930 Jun 21
-    new ZoneOffset(21600000, "-", "+0", -2019772800000),
+    new ZoneOffset(21600000, "-", "+06", -1244937600000),
     //     		 7:00	Russia	+07/+08	1991 Mar 31  2:00s
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 673063200000),
     //     		 6:00	Russia	+06/+07	1992 Jan 19  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 698464800000),
     //     		 7:00	Russia	+07/+08	2010 Mar 28  2:00s
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 1272420000000),
     //     		 6:00	Russia	+06/+07	2011 Mar 27  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 1303869600000),
     //     		 7:00	-	+07
-    new ZoneOffset(25200000, "-", "+0", -1985472000000),
+    new ZoneOffset(25200000, "-", "+07", -1),
   ])
 );
 zones.set(
@@ -2471,17 +2585,17 @@ zones.set(
     // Zone Asia/Krasnoyarsk     6:11:26 -	LMT	1920 Jan  6
     new ZoneOffset(22286000, "-", "LMT", -1574812800000),
     //     		 6:00	-	+06	1930 Jun 21
-    new ZoneOffset(21600000, "-", "+0", -2019772800000),
+    new ZoneOffset(21600000, "-", "+06", -1244937600000),
     //     		 7:00	Russia	+07/+08	1991 Mar 31  2:00s
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 673063200000),
     //     		 6:00	Russia	+06/+07	1992 Jan 19  2:00s
-    new ZoneOffset(21600000, "Russia", "+0", -2017008000000),
+    new ZoneOffset(21600000, "Russia", "+06/+07", 698464800000),
     //     		 7:00	Russia	+07/+08	2011 Mar 27  2:00s
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 1303869600000),
     //     		 8:00	-	+08	2014 Oct 26  2:00s
-    new ZoneOffset(28800000, "-", "+0", -1956355200000),
+    new ZoneOffset(28800000, "-", "+08", 1416967200000),
     //     		 7:00	-	+07
-    new ZoneOffset(25200000, "-", "+0", -1985472000000),
+    new ZoneOffset(25200000, "-", "+07", -1),
   ])
 );
 zones.set(
@@ -2492,17 +2606,17 @@ zones.set(
     //     		 6:57:05 -	IMT	1920 Jan 25 # Irkutsk Mean Time
     new ZoneOffset(25025000, "-", "IMT", -1573171200000),
     //     		 7:00	-	+07	1930 Jun 21
-    new ZoneOffset(25200000, "-", "+0", -1988236800000),
+    new ZoneOffset(25200000, "-", "+07", -1244937600000),
     //     		 8:00	Russia	+08/+09	1991 Mar 31  2:00s
-    new ZoneOffset(28800000, "Russia", "+0", -1953936000000),
+    new ZoneOffset(28800000, "Russia", "+08/+09", 673063200000),
     //     		 7:00	Russia	+07/+08	1992 Jan 19  2:00s
-    new ZoneOffset(25200000, "Russia", "+0", -1985472000000),
+    new ZoneOffset(25200000, "Russia", "+07/+08", 698464800000),
     //     		 8:00	Russia	+08/+09	2011 Mar 27  2:00s
-    new ZoneOffset(28800000, "Russia", "+0", -1953936000000),
+    new ZoneOffset(28800000, "Russia", "+08/+09", 1303869600000),
     //     		 9:00	-	+09	2014 Oct 26  2:00s
     new ZoneOffset(32400000, "-", "+09", 1416967200000),
     //     		 8:00	-	+08
-    new ZoneOffset(28800000, "-", "+0", -1953936000000),
+    new ZoneOffset(28800000, "-", "+08", -1),
   ])
 );
 zones.set(
@@ -2511,17 +2625,17 @@ zones.set(
     // Zone Asia/Chita     7:33:52 -	LMT	1919 Dec 15
     new ZoneOffset(27232000, "-", "LMT", -1576713600000),
     //     		 8:00	-	+08	1930 Jun 21
-    new ZoneOffset(28800000, "-", "+0", -1956700800000),
+    new ZoneOffset(28800000, "-", "+08", -1244937600000),
     //     		 9:00	Russia	+09/+10	1991 Mar 31  2:00s
-    new ZoneOffset(32400000, "Russia", "+09/+", -1893456000000),
+    new ZoneOffset(32400000, "Russia", "+09/+10", 673063200000),
     //     		 8:00	Russia	+08/+09	1992 Jan 19  2:00s
-    new ZoneOffset(28800000, "Russia", "+0", -1953936000000),
+    new ZoneOffset(28800000, "Russia", "+08/+09", 698464800000),
     //     		 9:00	Russia	+09/+10	2011 Mar 27  2:00s
-    new ZoneOffset(32400000, "Russia", "+09/+", -1893456000000),
+    new ZoneOffset(32400000, "Russia", "+09/+10", 1303869600000),
     //     		10:00	-	+10	2014 Oct 26  2:00s
-    new ZoneOffset(36000000, "-", "+", -1893196800000),
+    new ZoneOffset(36000000, "-", "+10", 1416967200000),
     //     		 8:00	-	+08	2016 Mar 27  2:00
-    new ZoneOffset(28800000, "-", "+0", -1956182400000),
+    new ZoneOffset(28800000, "-", "+08", 1461722400000),
     //     		 9:00	-	+09
     new ZoneOffset(32400000, "-", "+09", -1),
   ])
@@ -2532,15 +2646,15 @@ zones.set(
     // Zone Asia/Yakutsk     8:38:58 -	LMT	1919 Dec 15
     new ZoneOffset(31138000, "-", "LMT", -1576713600000),
     //     		 8:00	-	+08	1930 Jun 21
-    new ZoneOffset(28800000, "-", "+0", -1956700800000),
+    new ZoneOffset(28800000, "-", "+08", -1244937600000),
     //     		 9:00	Russia	+09/+10	1991 Mar 31  2:00s
-    new ZoneOffset(32400000, "Russia", "+09/+", -1893456000000),
+    new ZoneOffset(32400000, "Russia", "+09/+10", 673063200000),
     //     		 8:00	Russia	+08/+09	1992 Jan 19  2:00s
-    new ZoneOffset(28800000, "Russia", "+0", -1953936000000),
+    new ZoneOffset(28800000, "Russia", "+08/+09", 698464800000),
     //     		 9:00	Russia	+09/+10	2011 Mar 27  2:00s
-    new ZoneOffset(32400000, "Russia", "+09/+", -1893456000000),
+    new ZoneOffset(32400000, "Russia", "+09/+10", 1303869600000),
     //     		10:00	-	+10	2014 Oct 26  2:00s
-    new ZoneOffset(36000000, "-", "+", -1893196800000),
+    new ZoneOffset(36000000, "-", "+10", 1416967200000),
     //     		 9:00	-	+09
     new ZoneOffset(32400000, "-", "+09", -1),
   ])
@@ -2553,15 +2667,15 @@ zones.set(
     //     		 9:00	-	+09	1930 Jun 21
     new ZoneOffset(32400000, "-", "+09", -1244937600000),
     //     		10:00	Russia	+10/+11	1991 Mar 31  2:00s
-    new ZoneOffset(36000000, "Russia", "+", -1890777600000),
+    new ZoneOffset(36000000, "Russia", "+10/+11", 673063200000),
     //     		 9:00	Russia	+09/+10	1992 Jan 19  2:00s
-    new ZoneOffset(32400000, "Russia", "+09/+", -1893369600000),
+    new ZoneOffset(32400000, "Russia", "+09/+10", 698464800000),
     //     		10:00	Russia	+10/+11	2011 Mar 27  2:00s
-    new ZoneOffset(36000000, "Russia", "+", -1890777600000),
+    new ZoneOffset(36000000, "Russia", "+10/+11", 1303869600000),
     //     		11:00	-	+11	2014 Oct 26  2:00s
-    new ZoneOffset(39600000, "-", "+", -1861660800000),
+    new ZoneOffset(39600000, "-", "+11", 1416967200000),
     //     		10:00	-	+10
-    new ZoneOffset(36000000, "-", "+", -1890777600000),
+    new ZoneOffset(36000000, "-", "+10", -1),
   ])
 );
 zones.set(
@@ -2570,19 +2684,19 @@ zones.set(
     // Zone Asia/Khandyga     9:02:13 -	LMT	1919 Dec 15
     new ZoneOffset(32533000, "-", "LMT", -1576713600000),
     //     		 8:00	-	+08	1930 Jun 21
-    new ZoneOffset(28800000, "-", "+0", -1956700800000),
+    new ZoneOffset(28800000, "-", "+08", -1244937600000),
     //     		 9:00	Russia	+09/+10	1991 Mar 31  2:00s
-    new ZoneOffset(32400000, "Russia", "+09/+", -1893456000000),
+    new ZoneOffset(32400000, "Russia", "+09/+10", 673063200000),
     //     		 8:00	Russia	+08/+09	1992 Jan 19  2:00s
-    new ZoneOffset(28800000, "Russia", "+0", -1953936000000),
+    new ZoneOffset(28800000, "Russia", "+08/+09", 698464800000),
     //     		 9:00	Russia	+09/+10	2004
-    new ZoneOffset(32400000, "Russia", "+09/+", -1893196800000),
+    new ZoneOffset(32400000, "Russia", "+09/+10", 1075593600000),
     //     		10:00	Russia	+10/+11	2011 Mar 27  2:00s
-    new ZoneOffset(36000000, "Russia", "+", -1890777600000),
+    new ZoneOffset(36000000, "Russia", "+10/+11", 1303869600000),
     //     		11:00	-	+11	2011 Sep 13  0:00s # Decree 725?
-    new ZoneOffset(39600000, "-", "+", -1861920000000),
+    new ZoneOffset(39600000, "-", "+11", 1318464000000),
     //     		10:00	-	+10	2014 Oct 26  2:00s
-    new ZoneOffset(36000000, "-", "+", -1893196800000),
+    new ZoneOffset(36000000, "-", "+10", 1416967200000),
     //     		 9:00	-	+09
     new ZoneOffset(32400000, "-", "+09", -1),
   ])
@@ -2595,19 +2709,19 @@ zones.set(
     //     		 9:00	-	+09	1945 Aug 25
     new ZoneOffset(32400000, "-", "+09", -765849600000),
     //     		11:00	Russia	+11/+12	1991 Mar 31  2:00s # Sakhalin T
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 673063200000),
     //     		10:00	Russia	+10/+11	1992 Jan 19  2:00s
-    new ZoneOffset(36000000, "Russia", "+", -1890777600000),
+    new ZoneOffset(36000000, "Russia", "+10/+11", 698464800000),
     //     		11:00	Russia	+11/+12	1997 Mar lastSun  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 859852800000),
     //     		10:00	Russia	+10/+11	2011 Mar 27  2:00s
-    new ZoneOffset(36000000, "Russia", "+", -1890777600000),
+    new ZoneOffset(36000000, "Russia", "+10/+11", 1303869600000),
     //     		11:00	-	+11	2014 Oct 26  2:00s
-    new ZoneOffset(39600000, "-", "+", -1861660800000),
+    new ZoneOffset(39600000, "-", "+11", 1416967200000),
     //     		10:00	-	+10	2016 Mar 27  2:00s
-    new ZoneOffset(36000000, "-", "+", -1893024000000),
+    new ZoneOffset(36000000, "-", "+10", 1461722400000),
     //     		11:00	-	+11
-    new ZoneOffset(39600000, "-", "+", -1859241600000),
+    new ZoneOffset(39600000, "-", "+11", -1),
   ])
 );
 zones.set(
@@ -2616,19 +2730,19 @@ zones.set(
     // Zone Asia/Magadan    10:03:12 -	LMT	1924 May  2
     new ZoneOffset(36192000, "-", "LMT", -1438473600000),
     //     		10:00	-	+10	1930 Jun 21 # Magadan Time
-    new ZoneOffset(36000000, "-", "+", -1893542400000),
+    new ZoneOffset(36000000, "-", "+10", -1244937600000),
     //     		11:00	Russia	+11/+12	1991 Mar 31  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 673063200000),
     //     		10:00	Russia	+10/+11	1992 Jan 19  2:00s
-    new ZoneOffset(36000000, "Russia", "+", -1890777600000),
+    new ZoneOffset(36000000, "Russia", "+10/+11", 698464800000),
     //     		11:00	Russia	+11/+12	2011 Mar 27  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 1303869600000),
     //     		12:00	-	+12	2014 Oct 26  2:00s
-    new ZoneOffset(43200000, "-", "+", -1830124800000),
+    new ZoneOffset(43200000, "-", "+12", 1416967200000),
     //     		10:00	-	+10	2016 Apr 24  2:00s
-    new ZoneOffset(36000000, "-", "+", -1893024000000),
+    new ZoneOffset(36000000, "-", "+10", 1464055200000),
     //     		11:00	-	+11
-    new ZoneOffset(39600000, "-", "+", -1859241600000),
+    new ZoneOffset(39600000, "-", "+11", -1),
   ])
 );
 zones.set(
@@ -2637,17 +2751,17 @@ zones.set(
     // Zone Asia/Srednekolymsk    10:14:52 -	LMT	1924 May  2
     new ZoneOffset(36892000, "-", "LMT", -1438473600000),
     //     		10:00	-	+10	1930 Jun 21
-    new ZoneOffset(36000000, "-", "+", -1893542400000),
+    new ZoneOffset(36000000, "-", "+10", -1244937600000),
     //     		11:00	Russia	+11/+12	1991 Mar 31  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 673063200000),
     //     		10:00	Russia	+10/+11	1992 Jan 19  2:00s
-    new ZoneOffset(36000000, "Russia", "+", -1890777600000),
+    new ZoneOffset(36000000, "Russia", "+10/+11", 698464800000),
     //     		11:00	Russia	+11/+12	2011 Mar 27  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 1303869600000),
     //     		12:00	-	+12	2014 Oct 26  2:00s
-    new ZoneOffset(43200000, "-", "+", -1830124800000),
+    new ZoneOffset(43200000, "-", "+12", 1416967200000),
     //     		11:00	-	+11
-    new ZoneOffset(39600000, "-", "+", -1859241600000),
+    new ZoneOffset(39600000, "-", "+11", -1),
   ])
 );
 zones.set(
@@ -2656,21 +2770,21 @@ zones.set(
     // Zone Asia/Ust-Nera     9:32:54 -	LMT	1919 Dec 15
     new ZoneOffset(34374000, "-", "LMT", -1576713600000),
     //     		 8:00	-	+08	1930 Jun 21
-    new ZoneOffset(28800000, "-", "+0", -1956700800000),
+    new ZoneOffset(28800000, "-", "+08", -1244937600000),
     //     		 9:00	Russia	+09/+10	1981 Apr  1
-    new ZoneOffset(32400000, "Russia", "+09/+", -1893456000000),
+    new ZoneOffset(32400000, "Russia", "+09/+10", 357523200000),
     //     		11:00	Russia	+11/+12	1991 Mar 31  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 673063200000),
     //     		10:00	Russia	+10/+11	1992 Jan 19  2:00s
-    new ZoneOffset(36000000, "Russia", "+", -1890777600000),
+    new ZoneOffset(36000000, "Russia", "+10/+11", 698464800000),
     //     		11:00	Russia	+11/+12	2011 Mar 27  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 1303869600000),
     //     		12:00	-	+12	2011 Sep 13  0:00s # Decree 725?
-    new ZoneOffset(43200000, "-", "+", -1830384000000),
+    new ZoneOffset(43200000, "-", "+12", 1318464000000),
     //     		11:00	-	+11	2014 Oct 26  2:00s
-    new ZoneOffset(39600000, "-", "+", -1861660800000),
+    new ZoneOffset(39600000, "-", "+11", 1416967200000),
     //     		10:00	-	+10
-    new ZoneOffset(36000000, "-", "+", -1890777600000),
+    new ZoneOffset(36000000, "-", "+10", -1),
   ])
 );
 zones.set(
@@ -2679,17 +2793,17 @@ zones.set(
     // Zone Asia/Kamchatka    10:34:36 -	LMT	1922 Nov 10
     new ZoneOffset(38076000, "-", "LMT", -1485129600000),
     //     		11:00	-	+11	1930 Jun 21
-    new ZoneOffset(39600000, "-", "+", -1862006400000),
+    new ZoneOffset(39600000, "-", "+11", -1244937600000),
     //     		12:00	Russia	+12/+13	1991 Mar 31  2:00s
-    new ZoneOffset(43200000, "Russia", "+", -1827705600000),
+    new ZoneOffset(43200000, "Russia", "+12/+13", 673063200000),
     //     		11:00	Russia	+11/+12	1992 Jan 19  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 698464800000),
     //     		12:00	Russia	+12/+13	2010 Mar 28  2:00s
-    new ZoneOffset(43200000, "Russia", "+", -1827705600000),
+    new ZoneOffset(43200000, "Russia", "+12/+13", 1272420000000),
     //     		11:00	Russia	+11/+12	2011 Mar 27  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 1303869600000),
     //     		12:00	-	+12
-    new ZoneOffset(43200000, "-", "+", -1827705600000),
+    new ZoneOffset(43200000, "-", "+12", -1),
   ])
 );
 zones.set(
@@ -2698,19 +2812,19 @@ zones.set(
     // Zone Asia/Anadyr    11:49:56 -	LMT	1924 May  2
     new ZoneOffset(42596000, "-", "LMT", -1438473600000),
     //     		12:00	-	+12	1930 Jun 21
-    new ZoneOffset(43200000, "-", "+", -1830470400000),
+    new ZoneOffset(43200000, "-", "+12", -1244937600000),
     //     		13:00	Russia	+13/+14	1982 Apr  1  0:00s
-    new ZoneOffset(46800000, "Russia", "+", -1796083200000),
+    new ZoneOffset(46800000, "Russia", "+13/+14", 389059200000),
     //     		12:00	Russia	+12/+13	1991 Mar 31  2:00s
-    new ZoneOffset(43200000, "Russia", "+", -1827705600000),
+    new ZoneOffset(43200000, "Russia", "+12/+13", 673063200000),
     //     		11:00	Russia	+11/+12	1992 Jan 19  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 698464800000),
     //     		12:00	Russia	+12/+13	2010 Mar 28  2:00s
-    new ZoneOffset(43200000, "Russia", "+", -1827705600000),
+    new ZoneOffset(43200000, "Russia", "+12/+13", 1272420000000),
     //     		11:00	Russia	+11/+12	2011 Mar 27  2:00s
-    new ZoneOffset(39600000, "Russia", "+", -1859241600000),
+    new ZoneOffset(39600000, "Russia", "+11/+12", 1303869600000),
     //     		12:00	-	+12
-    new ZoneOffset(43200000, "-", "+", -1827705600000),
+    new ZoneOffset(43200000, "-", "+12", -1),
   ])
 );
 zones.set(
@@ -2774,7 +2888,7 @@ zones.set(
     // Zone    Atlantic/Canary	-1:01:36 -	LMT	1922 Mar # Las Palmas de Gran C.
     new ZoneOffset(-3696000, "-", "LMT", -1506988800000),
     //     		-1:00	-	-01	1946 Sep 30  1:00
-    new ZoneOffset(-3600000, "-", "-0", -2177020800000),
+    new ZoneOffset(-3600000, "-", "-01", -731286000000),
     //     		 0:00	-	WET	1980 Apr  6  0:00s
     new ZoneOffset(0, "-", "WET", 326419200000),
     //     		 0:00	1:00	WEST	1980 Sep 28  1:00u
@@ -2823,7 +2937,7 @@ zones.set(
     //     		2:00	Turkey	EE%sT	1978 Jun 29
     new ZoneOffset(7200000, "Turkey", "EE%sT", 270518400000),
     //     		3:00	Turkey	+03/+04	1984 Nov  1  2:00
-    new ZoneOffset(10800000, "Turkey", "+0", -2111702400000),
+    new ZoneOffset(10800000, "Turkey", "+03/+04", 470714400000),
     //     		2:00	Turkey	EE%sT	2007
     new ZoneOffset(7200000, "Turkey", "EE%sT", 1170288000000),
     //     		2:00	EU	EE%sT	2011 Mar 27  1:00u
@@ -2841,7 +2955,7 @@ zones.set(
     //     		2:00	EU	EE%sT	2016 Sep  7
     new ZoneOffset(7200000, "EU", "EE%sT", 1475798400000),
     //     		3:00	-	+03
-    new ZoneOffset(10800000, "-", "+0", -2111702400000),
+    new ZoneOffset(10800000, "-", "+03", -1),
   ])
 );
 zones.set(
@@ -2900,7 +3014,7 @@ zones.set(
     // Zone Europe/Zaporozhye    2:20:40 -	LMT	1880
     new ZoneOffset(8440000, "-", "LMT", -2837462400000),
     //     		2:20	-	+0220	1924 May  2
-    new ZoneOffset(8400000, "-", "+0", -55224460800000),
+    new ZoneOffset(8400000, "-", "+0220", -1438473600000),
     //     		2:00	-	EET	1930 Jun 21
     new ZoneOffset(7200000, "-", "EET", -1244937600000),
     //     		3:00	-	MSK	1941 Aug 25
