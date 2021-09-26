@@ -235,7 +235,7 @@ function parseRule(line) {
  * @property {string} line
  */
 
-const zoneRE = /^(Zone)?\s+(?<name>[0-9a-zA-Z_\-\/]*)?\s+(?<offset>-?[0-9]{1,2}(:[0-9]{1,2}(:[0-9]{1,2})?)?)\s+(?<rules>[A-Za-z_\-]+|-?[0-9]{1,2}:[0-9]{1,2})\s+(?<format>[A-Za-z0-9+\-%\/]+)(\s+(?<until>.*))?(\s*#(?<comment>.*))?$/
+const zoneRE = /^(Zone)?\s+(?<name>[0-9a-zA-Z_+\-\/]*)?\s+(?<offset>-?[0-9]{1,2}(:[0-9]{1,2}(:[0-9]{1,2})?)?)\s+(?<rules>[A-Za-z_\-]+|-?[0-9]{1,2}:[0-9]{1,2})\s+(?<format>[A-Za-z0-9+\-%\/]+)(\s+(?<until>.*))?(\s*#(?<comment>.*))?$/
 
 /**
  * @param line {string} 
